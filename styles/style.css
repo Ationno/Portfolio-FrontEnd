@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+/*
+Pagina
+*/
+
+body {
+    background-color: #FDFFFC;
+    margin: 0 150px;
+}
+
+p {
+    margin: 0;
+}
+
+button {
+    background-color: #FDFFFC;
+}
+
+/*
+Barra de Navegacion
+*/
+.barra_navegacion {
+    display: flex;
+    padding: 2em 0em;
+}
+
+.barra_navegacion > * {
+    margin-right: 1em;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.barra_navegacion a {
+    display: flex;
+}
+
+.barra_navegacion box-icon {
+    width: 36px;
+    height: 36px;
+    align-self: center;
+}
+
+.barra_navegacion button {
+    padding: 0.1em 0.4em;
+    border: 2px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.barra_navegacion .push {
+    margin-left: auto;
+}
