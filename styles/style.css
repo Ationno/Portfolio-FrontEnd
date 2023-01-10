@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-
+/* Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Mulish:wght@300;600;1000&display=swap');
 /*
 Pagina
 */
 
 body {
     background-color: #FDFFFC;
-    margin: 0 150px;
+    margin: 0 75px;
 }
 
 p {
@@ -20,6 +20,7 @@ button {
 /*
 Barra de Navegacion
 */
+
 .barra_navegacion {
     display: flex;
     padding: 2em 0em;
@@ -28,7 +29,12 @@ Barra de Navegacion
 .barra_navegacion > * {
     margin-right: 1em;
     font-size: 24px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+}
+
+.barra_navegacion .yoprogramo {
+    font-weight: 1000;
 }
 
 .barra_navegacion a {
@@ -42,11 +48,56 @@ Barra de Navegacion
 }
 
 .barra_navegacion button {
-    padding: 0.1em 0.4em;
-    border: 2px solid #D1D1D1;
-    border-radius: 10px;
+    display: flex;
+    border:#FDFFFC;
+    padding: 0;
 }
 
 .barra_navegacion .push {
     margin-left: auto;
+}
+
+.barra_navegacion :last-child {
+    margin-right: 0;
+}
+
+/*
+Header
+*/
+
+header .contenedor {
+    position: relative;
+    width: 100%;
+    height: 750px;
+}
+
+header .caja {
+    position: relative;
+    width: 66%;
+    height: 100%;
+    background-color: #F9EFE7;
+}
+
+.caja h1 {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 3em;
+}
+
+.caja p {
+    position: absolute;
+    z-index: 1;
+    top: 40%;
+    left: 5%;
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.25em;
+}
+
+header .olas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
