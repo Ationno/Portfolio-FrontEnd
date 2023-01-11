@@ -25,12 +25,18 @@ p {
     margin: 0;
 }
 
-button {
-    background-color: #FDFFFC;
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.seccion {
-    margin: 250px 0;
+li {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+}
+button {
+    background-color: #FDFFFC;
 }
 
 .linea_pagina1, .linea_pagina2 {
@@ -48,6 +54,23 @@ button {
 .linea_pagina2 {
     right: -40px;
 }
+
+/* 
+Linea y titulo de cada seccion
+*/
+
+.titulo {
+    display: flex;
+}
+
+.linea {
+    margin-left: 25px;
+    height: 2px;
+    width: 300px;
+    align-self: center;
+    background-color: #d1d1d1;
+}
+
 
 /*
 Barra de Navegacion
@@ -137,9 +160,9 @@ Acerca de
 */
 
 .acerca_de {
-    margin: 250px 100px 0px 350px;
+    margin: 250px 100px 0px 300px;
     display: flex;
-    gap: 20%;
+    gap: 15%;
 }
 
 .acerca_de .texto {
@@ -195,18 +218,49 @@ Acerca de
     left: 0;
 }
 
-.acerca_de .titulo {
-    display: flex;
-}
-
 .acerca_de p {
     margin-top: 20px;
 }
 
-.titulo .linea {
-    margin-left: 25px;
-    height: 2px;
-    width: 300px;
-    align-self: center;
-    background-color: #d1d1d1;
+/*
+Experiencia
+*/
+
+.experiencia {
+    margin: 250px 100px 0px 500px;
+    width: 40%;
+}
+
+.experiencia .contenido {
+    display: flex;
+    gap: 10%;
+    margin: 25px 0 0 60px;
+}
+
+.lista_trabajos > * {
+    font-size: 1.25em;
+    padding: 7.5px 0 7.5px 10px;
+    border-left: 2px solid #d1d1d1;
+}
+
+.lista_trabajos :first-child {
+    border-left: 2px solid #b9d1d1;
+}
+
+.opcion_tomada h3 img {
+    width: 70px;
+    height: 37px;
+}
+
+.opcion_tomada ul {
+    margin-top: 15px;
+}
+
+.opcion_tomada ul > *{
+    margin-bottom: 10px;
+}
+
+.opcion_tomada ul li box-icon {
+    width: 10px;
+    height: 10px;
 }
