@@ -5,16 +5,48 @@ Pagina
 */
 
 body {
+    position: relative;
     background-color: #FDFFFC;
     margin: 0 75px;
 }
 
+h1 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 3em;
+}
+
+h2 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 2em;
+} 
+
 p {
+    font-family: 'Mulish', sans-serif;
     margin: 0;
 }
 
 button {
     background-color: #FDFFFC;
+}
+
+.seccion {
+    margin: 250px 0;
+}
+
+.linea_pagina1, .linea_pagina2 {
+    position: absolute;
+    top: 1.5em;
+    width: 2px;
+    height: 100%;
+    background-color: #d1d1d1;
+}
+
+.linea_pagina1 {
+    left: -40px;
+}
+
+.linea_pagina2 {
+    right: -40px;
 }
 
 /*
@@ -82,8 +114,6 @@ header .caja {
     position: absolute;
     top: 20%;
     left: 5%;
-    font-family: 'Abril Fatface', cursive;
-    font-size: 3em;
 }
 
 .caja p {
@@ -100,4 +130,83 @@ header .olas {
     bottom: 0;
     left: 0;
     width: 100%;
+}
+
+/*
+Acerca de
+*/
+
+.acerca_de {
+    margin: 250px 100px 0px 350px;
+    display: flex;
+    gap: 20%;
+}
+
+.acerca_de .texto {
+    align-self: center;
+    flex: 0 0 40%;
+}
+
+.acerca_de .imagen {
+    position: relative;
+}
+
+.acerca_de .imagen img {
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    height: 600px;
+}
+
+.imagen .linea1, .linea3 {
+    height: 2px;
+    width: 150px;
+    background-color: #d1d1d1;
+}
+
+.imagen .linea2, .linea4 {
+    height: 150px;
+    width: 2px;
+    background-color: #d1d1d1;
+}
+
+
+.imagen .linea1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.imagen .linea3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.imagen .linea2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.imagen .linea4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.acerca_de .titulo {
+    display: flex;
+}
+
+.acerca_de p {
+    margin-top: 20px;
+}
+
+.titulo .linea {
+    margin-left: 25px;
+    height: 2px;
+    width: 300px;
+    align-self: center;
+    background-color: #d1d1d1;
 }
