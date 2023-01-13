@@ -78,6 +78,7 @@ Barra de Navegacion
 
 .barra_navegacion {
     display: flex;
+    overflow: auto;
     padding: 2em 0em;
 }
 
@@ -160,14 +161,15 @@ Acerca de
 */
 
 .acerca_de {
-    margin: 250px 100px 0px 300px;
+    margin: 15% 20% 0 20%;
     display: flex;
-    gap: 15%;
+    overflow:auto;
+    justify-content: space-between;
 }
 
 .acerca_de .texto {
     align-self: center;
-    flex: 0 0 40%;
+    flex: 0 0 55%;
 }
 
 .acerca_de .imagen {
@@ -177,8 +179,8 @@ Acerca de
 .acerca_de .imagen img {
     padding: 30px;
     border-radius: 10px;
-    width: 400px;
-    height: 600px;
+    max-width: 400px;
+    height: auto;
 }
 
 .imagen .linea1, .linea3 {
@@ -227,19 +229,20 @@ Experiencia
 */
 
 .experiencia {
-    margin: 250px 100px 0px 500px;
-    width: 40%;
+    margin: 15% 20% 0 30%;
+    width: 45%;
 }
 
 .experiencia .contenido {
     display: flex;
+    overflow: auto;
     gap: 10%;
-    margin: 25px 0 0 60px;
+    margin: 35px 0 0 0;
 }
 
 .lista_trabajos > * {
     font-size: 1.25em;
-    padding: 7.5px 0 7.5px 10px;
+    padding: 7.5px 0 7.5px 15px;
     border-left: 2px solid #d1d1d1;
 }
 
@@ -263,4 +266,69 @@ Experiencia
 .opcion_tomada ul li box-icon {
     width: 10px;
     height: 10px;
+}
+
+/*
+Proyectos
+*/
+
+.proyectos {
+    margin: 15% 20% 0 20%;
+}
+
+.lista_proyectos {
+    margin-top: 2em;
+}
+
+.lista_proyectos .impar {
+    text-align: right;
+}
+
+.proyecto {
+    position: relative;
+    margin-top: 2em;
+}
+
+.proyecto .contenido {
+    padding: 2em 0;
+}
+
+.proyecto .contenido > * {
+    margin-bottom: 1em;
+}
+
+.proyecto .contenido p {
+    padding: 2em;
+    width: 55%;
+    background-color: #F9EFE7;
+}
+
+.impar .contenido p {
+    margin-left: auto;
+}
+
+.proyecto img {
+    width: 600px;
+    height: auto;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.impar img{
+    left: 0;
+}
+
+.lista_lenguajes {
+    display: flex;
+    gap: 1em;
+}
+
+.impar .lista_lenguajes {
+    justify-content: right;
+}
+
+.lista_links :first-child {
+    margin-right: .25em;
 }
