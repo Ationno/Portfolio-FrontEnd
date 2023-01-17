@@ -18,6 +18,15 @@
 
     <link href="styles/style.css" rel="stylesheet">
 
+	<!-- Hoja de Scripts JavaScript -->
+	<script
+		src="https://code.jquery.com/jquery-3.6.3.min.js"
+		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+		crossorigin="anonymous">
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
+
     <!-- Iconos -->
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -29,6 +38,7 @@
   	<body>
 		<div class="linea_pagina1"></div>
 		<div class="linea_pagina2"></div>
+
     	<!-- Barra de navegación -->
     	<nav class="barra_navegacion">
       		<p class="yoprogramo">#YoProgramo</p>
@@ -37,6 +47,7 @@
       		<a href="https://www.linkedin.com/in/antonio-fgc"><box-icon name='linkedin' type='logo' ></box-icon></a>
 			<button><box-icon name='log-in'></box-icon></button>
 		</nav>
+		
     	<!-- Header -->
 
     	<header>
@@ -51,7 +62,7 @@
       		</div>
     	</header>
 
-		<section class="seccion acerca_de">
+		<section class="acerca_de">
 			<div class="texto">
 				<div class="titulo">
 					<h2>01. Acerca de</h2>
@@ -74,6 +85,130 @@
 			</div>
 		</section>
 
+		<!-- Experiencia -->
+		<section class="experiencia">
+			<div class="titulo">
+				<h2>02. Experiencia</h2>
+				<div class="linea"></div>
+			</div>
+			<div class="contenido">
+				<ul class="lista_trabajos">
+					<li>McDonalds</li>
+					<li>Apple</li>
+					<li>Starbucks</li>
+					<li>Mostaza</li>
+				</ul>
+				<div class="opcion_tomada">
+					<h3> <strong>Ingeniero </strong> @ McDonalds <img src="images/logo mc.png" alt="Logo McDonalds"></h3>
+					<p> <i>May 2013 - May 2014</i> </p>
+					<ul>
+						<li> <box-icon type='solid' name='right-arrow'></box-icon> Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, a huge corporation, and a</li>
+						<li> <box-icon type='solid' name='right-arrow'></box-icon> Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, a huge corporation, and a</li>
+						<li> <box-icon type='solid' name='right-arrow'></box-icon> Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, a huge corporation, and a</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- Lenguajes -->
+		<section class="lenguajes">
+			<div class="titulo">
+				<h2>04. Lenguajes</h2>
+				<div class="linea"></div>
+			</div>
+			<div class="cartas">
+				<div class="carta">
+					<div class="chart" data-percent="73" data-scale-color="#ffb400"><p>73%</p></div>
+					<div class="cuerpo_carta">
+						<h3>JavaScript</h3>
+						<p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+					</div>
+				</div>
+				<div class="carta">
+					<div class="chart" data-percent="25" data-scale-color="#ffb400"><p>25%</p></div>
+					<div class="cuerpo_carta">
+						<h3>CSS</h3>
+						<p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+					</div>
+				</div>
+				<div class="carta">
+					<div class="chart" data-percent="32" data-scale-color="#ffb400"><p>32%</p></div>
+					<div class="cuerpo_carta">
+						<h3>HTML</h3>
+						<p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+					</div>
+				</div>
+				<div class="carta">
+					<div class="chart" data-percent="17" data-scale-color="#ffb400"><p>17%</p></div>
+					<div class="cuerpo_carta">
+						<h3>Python</h3>
+						<p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+					</div>
+				</div>
+				<div class="carta">
+					<div class="chart" data-percent="41" data-scale-color="#ffb400"><p>41%</p></div>
+					<div class="cuerpo_carta">
+						<h3>MySQL</h3>
+						<p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+					</div>
+				</div>
+				<div class="carta">
+					<div class="chart" data-percent="50" data-scale-color="#ffb400"><p>50%</p></div>
+					<div class="cuerpo_carta">
+						<h3>Angular</h3>
+						<p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+					</div>
+				</div>			
+			</div>
+		</section>
+
+		<!-- Proyectos -->
+		<section class="proyectos">
+			<div class="titulo">
+				<h2>05. Proyectos</h2>
+				<div class="linea"></div>
+			</div>
+			<div class="lista_proyectos">
+				<div class="proyecto impar">
+					<img src="images/imagen_website.png" alt="Imagen Website">
+					<div class="contenido">
+						<h3> <strong>Website de Cocina</strong> </h3>
+						<p>A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. 
+							Create and save new playlists of recommended tracks based on your existing playlists and more.</p>
+						<ul class="lista_lenguajes">
+							<li>HTML</li>
+							<li>Css</li>
+							<li>Bootstrap</li>
+							<li>JavaScript</li>
+							<li>Angular</li>
+						</ul>
+						<div class="lista_links">
+							<a href="https://github.com/Ationno"><box-icon type='logo' name='github'></box-icon></a>
+							<a href=""><box-icon name='link-external' ></box-icon></a>
+						</div>
+					</div>
+				</div>
+				<div class="proyecto">
+					<img src="images/imagen_website.png" alt="Imagen Website">
+					<div class="contenido">
+						<h3> <strong>Website de Educacion</strong> </h3>
+						<p>A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. 
+							Create and save new playlists of recommended tracks based on your existing playlists and more.</p>
+						<ul class="lista_lenguajes">
+							<li>HTML</li>
+							<li>Css</li>
+							<li>Bootstrap</li>
+							<li>JavaScript</li>
+							<li>Angular</li>
+						</ul>
+						<div class="lista_links">
+							<a href="https://github.com/Ationno"><box-icon type='logo' name='github'></box-icon></a>
+							<a href=""><box-icon name='link-external' ></box-icon></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
     	<!-- Bootstrap JS -->
 
     	<script src="dist/Bootstrap 5.3.0/js/bootstrap.bundle.min.js"></script>

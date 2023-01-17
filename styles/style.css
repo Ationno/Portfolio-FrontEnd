@@ -1,5 +1,5 @@
 /* Fuentes*/
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Mulish:wght@300;600;1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bitter:wght@700&family=Mulish:wght@300;600;1000&display=swap');
 /*
 Pagina
 */
@@ -20,17 +20,29 @@ h2 {
     font-size: 2em;
 } 
 
+h3 {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 1.5em;
+} 
+
 p {
     font-family: 'Mulish', sans-serif;
     margin: 0;
 }
 
-button {
-    background-color: #FDFFFC;
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.seccion {
-    margin: 250px 0;
+li {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+}
+button {
+    background-color: #FDFFFC;
 }
 
 .linea_pagina1, .linea_pagina2 {
@@ -49,12 +61,30 @@ button {
     right: -40px;
 }
 
+/* 
+Linea y titulo de cada seccion
+*/
+
+.titulo {
+    display: flex;
+}
+
+.linea {
+    margin-left: 25px;
+    height: 2px;
+    width: 300px;
+    align-self: center;
+    background-color: #d1d1d1;
+}
+
+
 /*
 Barra de Navegacion
 */
 
 .barra_navegacion {
     display: flex;
+    overflow: auto;
     padding: 2em 0em;
 }
 
@@ -137,14 +167,15 @@ Acerca de
 */
 
 .acerca_de {
-    margin: 250px 100px 0px 350px;
+    margin: 15% 20% 0 20%;
     display: flex;
-    gap: 20%;
+    overflow:auto;
+    justify-content: space-between;
 }
 
 .acerca_de .texto {
     align-self: center;
-    flex: 0 0 40%;
+    flex: 0 0 55%;
 }
 
 .acerca_de .imagen {
@@ -154,8 +185,8 @@ Acerca de
 .acerca_de .imagen img {
     padding: 30px;
     border-radius: 10px;
-    width: 400px;
-    height: 600px;
+    max-width: 400px;
+    height: auto;
 }
 
 .imagen .linea1, .linea3 {
@@ -195,18 +226,156 @@ Acerca de
     left: 0;
 }
 
-.acerca_de .titulo {
-    display: flex;
-}
-
 .acerca_de p {
     margin-top: 20px;
 }
 
-.titulo .linea {
-    margin-left: 25px;
-    height: 2px;
-    width: 300px;
-    align-self: center;
-    background-color: #d1d1d1;
+/*
+Experiencia
+*/
+
+.experiencia {
+    margin: 15% 20% 0 30%;
+    width: 45%;
+}
+
+.experiencia .contenido {
+    display: flex;
+    overflow: auto;
+    gap: 10%;
+    margin: 35px 0 0 0;
+}
+
+.lista_trabajos > * {
+    font-size: 1.25em;
+    padding: 7.5px 0 7.5px 15px;
+    border-left: 2px solid #d1d1d1;
+}
+
+.lista_trabajos :first-child {
+    border-left: 2px solid #b9d1d1;
+}
+
+.opcion_tomada h3 img {
+    width: 70px;
+    height: 37px;
+}
+
+.opcion_tomada ul {
+    margin-top: 15px;
+}
+
+.opcion_tomada ul > *{
+    margin-bottom: 10px;
+}
+
+.opcion_tomada ul li box-icon {
+    width: 10px;
+    height: 10px;
+}
+
+/*
+Lenguajes
+*/
+
+.lenguajes {
+    margin: 15% 20% 0 30%;
+}
+
+.cartas {
+    margin-top: 2em;
+    gap: 3em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.carta {
+    border: 2px solid #d1d1d1;
+    border-radius: 10px;
+}
+
+.chart {
+    position: relative;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+}
+
+.chart p {
+    position: absolute;
+    font-family: 'Bitter', serif;
+    font-size: 2.5rem;
+    top: 50%;
+    margin-top: -30px;
+}
+
+.carta .cuerpo_carta {
+    padding: 1em;
+    border-top: 2px solid #d1d1d1;
+}
+
+/*
+Proyectos
+*/
+
+.proyectos {
+    margin: 15% 20% 0 20%;
+}
+
+.lista_proyectos {
+    margin-top: 2em;
+}
+
+.lista_proyectos .impar {
+    text-align: right;
+}
+
+.proyecto {
+    position: relative;
+    margin-top: 2em;
+}
+
+.proyecto .contenido {
+    padding: 2em 0;
+}
+
+.proyecto .contenido > * {
+    margin-bottom: 1em;
+}
+
+.proyecto .contenido p {
+    padding: 2em;
+    width: 55%;
+    background-color: #F9EFE7;
+}
+
+.impar .contenido p {
+    margin-left: auto;
+}
+
+.proyecto img {
+    width: 600px;
+    height: auto;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.impar img{
+    left: 0;
+}
+
+.lista_lenguajes {
+    display: flex;
+    gap: 1em;
+}
+
+.impar .lista_lenguajes {
+    justify-content: right;
+}
+
+.lista_links :first-child {
+    margin-right: .25em;
 }
