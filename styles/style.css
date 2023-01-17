@@ -1,5 +1,5 @@
 /* Fuentes*/
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Mulish:wght@300;600;1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bitter:wght@700&family=Mulish:wght@300;600;1000&display=swap');
 /*
 Pagina
 */
@@ -18,6 +18,12 @@ h1 {
 h2 {
     font-family: 'Abril Fatface', cursive;
     font-size: 2em;
+} 
+
+h3 {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 1.5em;
 } 
 
 p {
@@ -266,6 +272,47 @@ Experiencia
 .opcion_tomada ul li box-icon {
     width: 10px;
     height: 10px;
+}
+
+/*
+Lenguajes
+*/
+
+.lenguajes {
+    margin: 15% 20% 0 30%;
+}
+
+.cartas {
+    margin-top: 2em;
+    gap: 3em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.carta {
+    border: 2px solid #d1d1d1;
+    border-radius: 10px;
+}
+
+.chart {
+    position: relative;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+}
+
+.chart p {
+    position: absolute;
+    font-family: 'Bitter', serif;
+    font-size: 2.5rem;
+    top: 50%;
+    margin-top: -30px;
+}
+
+.carta .cuerpo_carta {
+    padding: 1em;
+    border-top: 2px solid #d1d1d1;
 }
 
 /*
