@@ -1,6 +1,6 @@
 $(function() {
     $('.chart').easyPieChart({
-      size: 200,
+      size: 175,
       barColor: "#41c0cd ",
       scaleLength: 0,
       lineWidth: 25,

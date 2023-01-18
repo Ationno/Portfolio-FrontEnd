@@ -26,6 +26,12 @@ h3 {
     font-size: 1.5em;
 } 
 
+h4 {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 1.35em;
+} 
+
 p {
     font-family: 'Mulish', sans-serif;
     margin: 0;
@@ -275,39 +281,96 @@ Experiencia
 }
 
 /*
-Lenguajes
+Educacion
 */
 
-.lenguajes {
+.educacion {
+    margin: 15% 20% 0 20%;
+}
+
+.lista_educacion {
+    margin-top: 2em;
+    border-left: 2px solid #d1d1d1;
+}
+
+.lista_educacion li {
+    display: flex;
+    position: relative;
+    margin-bottom: 2em;
+}
+
+.lista_educacion li::after {
+    content: " ";
+    width: 20px;
+    height: 20px;
+    background-color: #d1d1d1;
+    position: absolute;
+    top: 0;
+    left: -11px;
+    border-radius: 100%;
+}
+
+.lista_educacion li img {
+    width: 125px;
+    height: auto;
+}
+
+.lista_educacion li .texto h3 i {
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.35rem;
+}
+
+/*
+Hard & Soft Skills
+*/
+
+.habilidades {
     margin: 15% 20% 0 30%;
 }
 
 .cartas {
     margin-top: 2em;
-    gap: 3em;
+}
+
+.cartas h3 {
+    margin: 1em 0;
+    text-align: center;
+}
+
+.cartas .contenido {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 3em;
 }
 
 .carta {
     border: 2px solid #d1d1d1;
     border-radius: 10px;
+    box-shadow: 0px 5px 3px #d1d1d1;
+    animation: carta_hover_terminada 0.5s ease-in-out 0s forwards;
+    transition: 0.5s;
 }
+
+.carta:is(:hover, :focus) {
+    transform: scale(1.05);
+    box-shadow: 0px 15px 10px #d1d1d1;   
+}
+
 
 .chart {
     position: relative;
     padding: 1em;
     display: flex;
     justify-content: center;
-    height: 200px;
+    height: 175px;
 }
 
 .chart p {
     position: absolute;
     font-family: 'Bitter', serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     top: 50%;
-    margin-top: -30px;
+    margin-top: -24px;
 }
 
 .carta .cuerpo_carta {
@@ -378,4 +441,23 @@ Proyectos
 
 .lista_links :first-child {
     margin-right: .25em;
+}
+
+/*
+Footer
+*/
+
+footer {
+    margin: 4em 0 2em 0;
+}
+
+footer p {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+footer p box-icon{
+    justify-content: center;
+    margin-left: 0.5em;
 }
