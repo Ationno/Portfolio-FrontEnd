@@ -1,0 +1,63 @@
+.acerca_de {
+    margin: 15% 20% 0 20%;
+    display: flex;
+    overflow:auto;
+    justify-content: space-between;
+}
+
+.acerca_de .texto {
+    align-self: center;
+    flex: 0 0 55%;
+}
+
+.acerca_de .imagen {
+    position: relative;
+}
+
+.acerca_de .imagen img {
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    height: auto;
+}
+
+.imagen .linea1, .linea3 {
+    height: 2px;
+    width: 150px;
+    background-color: #d1d1d1;
+}
+
+.imagen .linea2, .linea4 {
+    height: 150px;
+    width: 2px;
+    background-color: #d1d1d1;
+}
+
+
+.imagen .linea1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.imagen .linea3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.imagen .linea2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.imagen .linea4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.acerca_de p {
+    margin-top: 20px;
+}

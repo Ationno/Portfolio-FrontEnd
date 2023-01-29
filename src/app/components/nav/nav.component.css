@@ -1,0 +1,30 @@
+.barra_navegacion {
+    display: flex;
+    overflow: auto;
+    padding: 2em 0em;
+}
+
+.barra_navegacion > * {
+    margin-right: 1em;
+    font-size: 24px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+}
+
+.barra_navegacion .yoprogramo {
+    font-weight: 1000;
+}
+
+.barra_navegacion i {
+    color: black;
+    font-size: 1.5em;
+    align-self: center;
+}
+
+.barra_navegacion .push {
+    margin-left: auto;
+}
+
+.barra_navegacion :last-child {
+    margin-right: 0;
+}

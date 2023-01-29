@@ -1,0 +1,38 @@
+.experiencia {
+    margin: 15% 20% 0 30%;
+    width: 45%;
+}
+
+.experiencia .contenido {
+    display: flex;
+    overflow: auto;
+    gap: 10%;
+    margin: 35px 0 0 0;
+}
+
+.lista_trabajos > * {
+    font-size: 1.25em;
+    padding: 7.5px 0 7.5px 15px;
+    border-left: 2px solid #d1d1d1;
+}
+
+.lista_trabajos :first-child {
+    border-left: 2px solid #b9d1d1;
+}
+
+.opcion_tomada h3 img {
+    width: 70px;
+    height: 37px;
+}
+
+.opcion_tomada ul {
+    margin-top: 15px;
+}
+
+.opcion_tomada ul > *{
+    margin-bottom: 10px;
+}
+
+.opcion_tomada ul li i {
+    font-size: 0.7rem;
+}
