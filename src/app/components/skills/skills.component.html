@@ -6,93 +6,20 @@
     <div class="cartas">
         <h3>Soft Skills</h3>
         <div class="contenido">
-            <div class="carta">
-                <div class="chart" data-percent="73" data-scale-color="#ffb400"><p>73%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>JavaScript</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="25" data-scale-color="#ffb400"><p>25%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>CSS</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="32" data-scale-color="#ffb400"><p>32%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>HTML</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="17" data-scale-color="#ffb400"><p>17%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>Python</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="41" data-scale-color="#ffb400"><p>41%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>MySQL</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="50" data-scale-color="#ffb400"><p>50%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>Angular</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>		
+            <app-skill-element 
+                *ngFor="let skill of skills" 
+                [skill] = "skill"
+                (onDeleteSkill)="deleteSkill(skill)"
+            >
+            </app-skill-element>
         </div>
         <h3>Hard Skills</h3>
         <div class="contenido">
-            <div class="carta">
-                <div class="chart" data-percent="73" data-scale-color="#ffb400"><p>73%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>JavaScript</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="25" data-scale-color="#ffb400"><p>25%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>CSS</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="32" data-scale-color="#ffb400"><p>32%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>HTML</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="17" data-scale-color="#ffb400"><p>17%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>Python</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="41" data-scale-color="#ffb400"><p>41%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>MySQL</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>
-            <div class="carta">
-                <div class="chart" data-percent="50" data-scale-color="#ffb400"><p>50%</p></div>
-                <div class="cuerpo_carta">
-                    <h4>Angular</h4>
-                    <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-                </div>
-            </div>		
+            <app-skill-element 
+                *ngFor="let skill of skills" 
+                [skill] = "skill"
+            >
+            </app-skill-element>
         </div>		
     </div>
 </section>
