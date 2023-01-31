@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,12 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SkillElementComponent } from './components/skills/skill-element/skill-element.component';
+import { AddSkillComponent } from './components/skills/add-skill/add-skill.component';
+
+/* const appRoutes: Routes = [
+	{path: '', component: HomeComponent}
+]
+*/
 
 @NgModule({
 	declarations: [
@@ -26,11 +34,14 @@ import { SkillElementComponent } from './components/skills/skill-element/skill-e
     	ProjectsComponent,
     	FooterComponent,
     	SkillElementComponent,
+     AddSkillComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule,
+		//RouterModule.forRoot(appRoutes, {enableTracing: true})
 	],
 	providers: [],
 	bootstrap: [AppComponent]

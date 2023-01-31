@@ -1,5 +1,5 @@
 export interface Skill {
-    id: number;
+    id?: number;
     titulo:string;
     parrafo:string;
     porcentaje:number;

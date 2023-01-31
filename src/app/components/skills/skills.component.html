@@ -3,6 +3,10 @@
         <h2>04. Hard & Soft Skills</h2>
         <div class="linea"></div>
     </div>
+    <i class='bx bx-plus' (click)="toggleAddSkill()"></i>
+    <app-add-skill
+        (onAddSkill)="addSkill($event)"
+    ></app-add-skill>
     <div class="cartas">
         <h3>Soft Skills</h3>
         <div class="contenido">

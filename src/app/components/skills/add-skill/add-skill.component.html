@@ -1,0 +1,36 @@
+<form 
+    (ngSubmit)="onSubmit()"
+    *ngIf="showAddSkill"
+>
+    <div class="form-control">
+        <label for="titulo">Titulo de habilidad</label>
+        <input 
+            type="text" 
+            name="titulo" 
+            id="titulo" 
+            placeholder="Agregar titulo"
+            [(ngModel)]="titulo"
+        >
+    </div>
+    <div class="form-control">
+        <label for="parrafo">Parrafo de explicacion</label>
+        <input 
+            type="text"  
+            name="parrafo" 
+            id="parrafo" 
+            placeholder="Agregar parrafo"
+            [(ngModel)]="parrafo"    
+        >
+    </div>
+    <div class="form-control">
+        <label for="porcentaje">Porcentaje</label>
+        <input 
+            type="number" 
+            name="porcentaje" 
+            id="porcentaje" 
+            placeholder="Agregar porcentaje"
+            [(ngModel)]="porcentaje"
+        >
+    </div>
+    <input type="submit" value="Agregar">
+</form>
