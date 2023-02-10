@@ -1,0 +1,39 @@
+{
+  "skills": [
+    {
+      "titulo": "sadasd",
+      "parrafo": "asdasd",
+      "porcentaje": 6,
+      "eleccion": "Hard",
+      "id": 4
+    },
+    {
+      "titulo": "prueba6623",
+      "parrafo": "prueba3",
+      "porcentaje": 1,
+      "eleccion": "Soft",
+      "id": 7
+    },
+    {
+      "titulo": "123",
+      "parrafo": "123",
+      "porcentaje": 6,
+      "eleccion": "Soft",
+      "id": 8
+    },
+    {
+      "titulo": "asd3",
+      "parrafo": "312",
+      "porcentaje": 2,
+      "eleccion": "Hard",
+      "id": 9
+    },
+    {
+      "titulo": "asdsa",
+      "parrafo": "asdasd",
+      "porcentaje": 22,
+      "eleccion": "Soft",
+      "id": 10
+    }
+  ]
+}

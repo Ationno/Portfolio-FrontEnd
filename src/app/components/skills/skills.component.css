@@ -2,6 +2,14 @@
     margin: 15% 20% 0 30%;
 }
 
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
 .cartas {
     margin-top: 2em;
 }
@@ -13,41 +21,6 @@
 
 .cartas .contenido {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
     gap: 3em;
-}
-
-.carta {
-    border: 2px solid #d1d1d1;
-    border-radius: 10px;
-    box-shadow: 0px 5px 3px #d1d1d1;
-    animation: carta_hover_terminada 0.5s ease-in-out 0s forwards;
-    transition: 0.5s;
-}
-
-.carta:is(:hover, :focus) {
-    transform: scale(1.05);
-    box-shadow: 0px 15px 10px #d1d1d1;   
-}
-
-
-.chart {
-    position: relative;
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    height: 175px;
-}
-
-.chart p {
-    position: absolute;
-    font-family: 'Bitter', serif;
-    font-size: 2rem;
-    top: 50%;
-    margin-top: -24px;
-}
-
-.carta .cuerpo_carta {
-    padding: 1em;
-    border-top: 2px solid #d1d1d1;
 }
