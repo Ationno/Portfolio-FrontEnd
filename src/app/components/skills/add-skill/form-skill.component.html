@@ -1,7 +1,8 @@
 <form 
-    (ngSubmit)="onSubmit()"
     *ngIf="showAddSkill"
 >
+    <i class='bx bx-x' (click)="this.toggleAddSkill.emit()"></i>
+    <h1>{{showEdit ? 'Editar' : 'Agregar'}} Habilidad</h1> 
     <div class="form-control">
         <label for="titulo">Titulo de habilidad</label>
         <input 
@@ -10,6 +11,7 @@
             id="titulo" 
             placeholder="Agregar titulo"
             [(ngModel)]="titulo"
+            [value] = "titulo"
         >
     </div>
     <div class="form-control">
@@ -19,7 +21,8 @@
             name="parrafo" 
             id="parrafo" 
             placeholder="Agregar parrafo"
-            [(ngModel)]="parrafo"    
+            [(ngModel)]="parrafo"  
+            [value] = "parrafo"  
         >
     </div>
     <div class="form-control">
@@ -28,9 +31,19 @@
             type="number" 
             name="porcentaje" 
             id="porcentaje" 
+            ngValue=12
             placeholder="Agregar porcentaje"
             [(ngModel)]="porcentaje"
+            [value]="porcentaje"
         >
     </div>
-    <input type="submit" value="Agregar">
+    <div class="form-control" *ngIf="!showEdit">
+        <label for="choice">Tipo de habilidad</label>
+        <select [(ngModel)]="eleccion" id="choice" name="eleccion">
+            <option [ngValue]="'Soft'" value="Soft">Soft Skill</option>
+            <option [ngValue]="'Hard'" value="Hard">Hard Skill</option>
+        </select>
+    </div>
+    <input *ngIf="!showEdit" class="button-green" type="submit" value="Agregar" (click)="add()">
+    <input *ngIf="showEdit" class="button-green" type="submit" value="Editar" (click)="edit()">
 </form>

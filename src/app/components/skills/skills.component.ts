@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Skill } from '../../Skill';
-import { SkillService } from '../../service/skill.service';
 import { UiService } from '../../service/ui.service';
 import { Subscription } from 'rxjs';
+import { SkillService } from "src/app/service/skill.service";
+import { Skill } from '../../Skill';
 
 @Component({
 	selector: 'app-skills',
@@ -10,36 +10,62 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./skills.component.css']
 })
 export class SkillsComponent {
-	skills : Skill[] = [];
-	showAddSkill: boolean = false;
+    skills : Skill[] = [];
+	skillsSoft : Skill[] = [];
+	skillsHard : Skill[] = [];
+    showAddSkill: boolean = false;
 	subscription?: Subscription;
+	editar: boolean = false;
+	skillEdit: Skill = {id: 0, titulo: "", parrafo: "", porcentaje: 0, eleccion: ""};
 
-	constructor(
+    constructor(
 		private skillService: SkillService,
-		private uiService: UiService
-	) {
-		this.subscription = this.uiService.onToggle().subscribe( value => this.showAddSkill = value );
-	}
+		private uiService: UiService,
+	) {}
 
 	ngOnInit() {
-		this.skillService.getSkills().subscribe((skills) => {
-			this.skills = skills;
+		this.skillService.get().subscribe((skills) => {	
+			this.skills = skills
 		})
+		this.subscription = this.uiService.onToggleAdd().subscribe( value => this.showAddSkill = value );
+	}
+	
+	public toggleAddSkill() {
+		this.skillEdit = {id: 0, titulo: "", parrafo: "", porcentaje: 0, eleccion: ""};
+		this.uiService.toggleEdit(false);
+		this.uiService.toggleAddSkill();
 	}
 
 	public deleteSkill(skill: Skill) {
-		this.skillService.deleteSkill(skill).subscribe(() => {
+		this.skillService.delete(skill).subscribe(() => {
 			this.skills = this.skills.filter( ele => ele.id !== skill.id )
 		})
 	}
 
+	public editSkill(skill: Skill) {
+		this.skillService.edit(skill).subscribe(() => {
+			let i: number = this.skills.findIndex(ele => ele.id == skill.id);
+			this.skills[i] = skill;
+		})
+	}
+
 	public addSkill(skill: Skill) {
-		this.skillService.addTask(skill).subscribe((skill) => {
+		this.skillService.add(skill).subscribe((skill: Skill) => {
 			this.skills.push(skill)
 		});
 	}
-
-	public toggleAddSkill() {
-		this.uiService.toggleAddSkill();
+	
+	public getSoftSkills() : Skill[] {
+		return this.skills.filter(elem => elem.eleccion === "Soft");
 	}
+
+	public getHardSkills() : Skill[] {
+		return this.skills.filter(elem => elem.eleccion === "Hard");
+	}
+
+	public editToFormSkill(skill: Skill) {
+		this.skillEdit = skill;
+	}
+	
+
 }

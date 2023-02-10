@@ -33,9 +33,20 @@
     border-top: 2px solid #d1d1d1;
 }
 
-.titulo i {
+.titulo .editar {
     margin-left: auto;
+    font-size: 1.5rem;
+    color: green;
+    cursor: pointer;
+}
+
+.titulo .borrar {
+    margin-left: 0.25em;
     font-size: 1.5rem;
     color: red;
     cursor: pointer;
+}
+
+.carta p {
+    overflow-wrap: break-word;
 }

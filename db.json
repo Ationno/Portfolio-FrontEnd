@@ -1,22 +1,39 @@
 {
   "skills": [
     {
-      "id": 1,
-      "titulo": "Javascript",
-      "parrafo": "JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript.",
-      "porcentaje": 73
+      "titulo": "sadasd",
+      "parrafo": "asdasd",
+      "porcentaje": 6,
+      "eleccion": "Hard",
+      "id": 4
     },
     {
-      "id": 2,
-      "titulo": "CSS",
-      "parrafo": "JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript.",
-      "porcentaje": 17
+      "titulo": "prueba6623",
+      "parrafo": "prueba3",
+      "porcentaje": 1,
+      "eleccion": "Soft",
+      "id": 7
     },
     {
-      "id": 3,
-      "titulo": "HTML",
-      "parrafo": "JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript.",
-      "porcentaje": 32
+      "titulo": "123",
+      "parrafo": "123",
+      "porcentaje": 6,
+      "eleccion": "Soft",
+      "id": 8
+    },
+    {
+      "titulo": "asd3",
+      "parrafo": "312",
+      "porcentaje": 2,
+      "eleccion": "Hard",
+      "id": 9
+    },
+    {
+      "titulo": "asdsa",
+      "parrafo": "asdasd",
+      "porcentaje": 22,
+      "eleccion": "Soft",
+      "id": 10
     }
   ]
 }
