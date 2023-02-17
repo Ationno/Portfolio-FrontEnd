@@ -12,9 +12,10 @@ form {
 	border-radius: 5px;
 	display: flex;
 	flex-direction: column;
+	min-width: 400px;
 }
 
-form i {
+.cerrar {
 	position: absolute;
 	top: 10px;
 	right: 10px;
@@ -50,6 +51,12 @@ form h1 {
 	padding: .5em;
 }
 
+.form-control textarea {
+	resize: none;
+	border: 1px solid #d1d1d1;
+	padding: .5em;
+}
+
 .button-green {
   	background-color: #2ea44f;
   	margin-top: 2em;
@@ -69,4 +76,52 @@ form h1 {
 
 .button-green:hover {
   	background-color: #2c974b;
+}
+
+.lenguajes {
+	display: flex;
+}
+
+.lenguajes input {
+	width: 100%;
+}
+
+.lenguajes button {
+	margin-left: 0.5em;
+}
+
+.agregar_lenguaje {
+	font-size: 1.15rem;
+	color: green;
+}
+
+.lenguajes_elegidos {
+	max-width: 310px;
+    display: flex;   
+	flex-wrap: wrap;
+	margin-top: .15em;
+}
+
+.lenguajes_elegidos li {
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	margin-right: .25em;
+	margin-top: .15em;
+	padding: .10em .25em;
+}
+
+.lenguajes_elegidos li i{
+	cursor: pointer;
+	font-size: 0.80rem;
+}
+
+.file-upload {
+	font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+.file-upload button i {
+	color: green;
+	font-size: 1.5rem;
 }

@@ -1,7 +1,7 @@
 <form 
     *ngIf="showAddSkill"
 >
-    <i class='bx bx-x' (click)="this.toggleAddSkill.emit()"></i>
+    <i class='bx bx-x' (click)="cerrar()"></i>
     <h1>{{showEdit ? 'Editar' : 'Agregar'}} Habilidad</h1> 
     <div class="form-control">
         <label for="titulo">Titulo de habilidad</label>
@@ -16,14 +16,16 @@
     </div>
     <div class="form-control">
         <label for="parrafo">Parrafo de explicacion</label>
-        <input 
+        <textarea 
             type="text"  
             name="parrafo" 
             id="parrafo" 
             placeholder="Agregar parrafo"
             [(ngModel)]="parrafo"  
             [value] = "parrafo"  
-        >
+            cols="30" rows="5"
+            maxlength="300"
+        ></textarea>
     </div>
     <div class="form-control">
         <label for="porcentaje">Porcentaje</label>

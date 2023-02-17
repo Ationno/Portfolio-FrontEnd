@@ -15,7 +15,9 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SkillElementComponent } from './components/skills/skill-element/skill-element.component';
-import { FormSkillComponent } from './components/skills/add-skill/form-skill.component';
+import { FormSkillComponent } from './components/skills/form-skill/form-skill.component';
+import { ProjectElementComponent } from './components/projects/project-element/project-element.component';
+import { FormProjectComponent } from './components/projects/form-project/form-project.component';
 
 /* const appRoutes: Routes = [
 	{path: '', component: HomeComponent}
@@ -34,7 +36,9 @@ import { FormSkillComponent } from './components/skills/add-skill/form-skill.com
     	ProjectsComponent,
     	FooterComponent,
     	SkillElementComponent,
-     	FormSkillComponent
+     	FormSkillComponent,
+      ProjectElementComponent,
+      FormProjectComponent
 	],
 	imports: [
 		BrowserModule,

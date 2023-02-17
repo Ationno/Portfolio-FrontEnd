@@ -27,7 +27,7 @@ export class FormSkillComponent {
 	constructor(
 		private uiService: UiService
 	) {
-		this.subscriptionAdd = this.uiService.onToggleAdd().subscribe( value => this.showAddSkill = value );
+		this.subscriptionAdd = this.uiService.onToggleAddSkill().subscribe( value => this.showAddSkill = value );
 		this.subscriptionEdit = this.uiService.onToggleEdit().subscribe( value => this.showEdit = value );
 	}
 	
@@ -45,15 +45,19 @@ export class FormSkillComponent {
 		return true
 	}
 
+	private resetVariables(): void {
+		this.titulo = ""
+		this.parrafo = ""
+		this.porcentaje = 0
+	}
+
 	public add(): void {
 		const {titulo, parrafo, porcentaje, eleccion} = this
 		const newSkill = {titulo, parrafo, porcentaje, eleccion}
-		this.toggleAddSkill.emit();
 		if (this.securitySkill()) {
 			this.onAddSkill.emit(newSkill);
-			this.titulo = ""
-			this.parrafo = ""
-			this.porcentaje = 0
+			this.toggleAddSkill.emit();
+			this.resetVariables();
 		} else
 			return
 	}
@@ -61,13 +65,16 @@ export class FormSkillComponent {
 	public edit(): void {
 		const {titulo, parrafo, porcentaje, eleccion, id} = this
 		const newSkill = {titulo, parrafo, porcentaje, eleccion, id}
-		this.toggleAddSkill.emit();
 		if (this.securitySkill()) {
 			this.onEditSkill.emit(newSkill);
-			this.titulo = ""
-			this.parrafo = ""
-			this.porcentaje = 0
+			this.toggleAddSkill.emit();
+			this.resetVariables();
 		} else
 			return
+	}
+
+	public cerrar(): void {
+		this.toggleAddSkill.emit();
+		this.resetVariables();
 	}
 }

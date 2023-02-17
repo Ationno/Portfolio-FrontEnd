@@ -27,7 +27,7 @@ export class SkillsComponent {
 		this.skillService.get().subscribe((skills) => {	
 			this.skills = skills
 		})
-		this.subscription = this.uiService.onToggleAdd().subscribe( value => this.showAddSkill = value );
+		this.subscription = this.uiService.onToggleAddSkill().subscribe( value => this.showAddSkill = value );
 	}
 	
 	public toggleAddSkill() {

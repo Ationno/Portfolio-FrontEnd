@@ -8,10 +8,12 @@ import { Skill } from '../Skill';
 })
 export class UiService {
 	private showAddSkill: boolean = false;
+	private showAddProject: boolean = false;
 	private showEdit: boolean = false;
 	private showEditSkill: Skill = {id: 0, titulo: "", parrafo: "", porcentaje: 0, eleccion: ""}
 
-	private showAddSubj = new Subject<any>();
+	private showAddSkillSubj = new Subject<any>();
+	private showAddProjectSubj = new Subject<any>();
 	private showEditSubj = new Subject<any>();
 	private showEditSkillSubj = new Subject<Skill>();
 
@@ -23,16 +25,26 @@ export class UiService {
 		this.renderer = rendererFactory.createRenderer(null, null)
 	}
 
-	public toggleAddSkill(): void {
-		if (this.showAddSkill) { 
+	private overlay(valor: boolean) {
+		if (valor) { 
 			disableScroll.off(); 
 			this.renderer.removeClass(document.body, "has-overlay");
 		} else {
 			disableScroll.on();
 			this.renderer.addClass(document.body, "has-overlay");
 		}
+	}
+
+	public toggleAddSkill(): void {
+		this.overlay(this.showAddSkill);
 		this.showAddSkill = !this.showAddSkill;
-		this.showAddSubj.next(this.showAddSkill);
+		this.showAddSkillSubj.next(this.showAddSkill);
+	}
+
+	public toggleAddProject(): void {
+		this.overlay(this.showAddProject);
+		this.showAddProject = !this.showAddProject;
+		this.showAddProjectSubj.next(this.showAddProject);
 	}
 
 	public toggleEdit(valor: boolean): void {
@@ -42,12 +54,15 @@ export class UiService {
 
 	public toggleEditSkill(skill: Skill): void {
 		this.showEditSkill = skill;
-		console.log(skill)
 		this.showEditSkillSubj.next(this.showEditSkill);
 	}
 
-	public onToggleAdd(): Observable<any> {
-		return this.showAddSubj.asObservable();
+	public onToggleAddSkill(): Observable<any> {
+		return this.showAddSkillSubj.asObservable();
+	} 
+
+	public onToggleAddProject(): Observable<any> {
+		return this.showAddProjectSubj.asObservable();
 	} 
 
 	public onToggleEdit(): Observable<any> {

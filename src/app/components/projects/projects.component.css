@@ -10,56 +10,10 @@
     text-align: right;
 }
 
-.proyecto {
-    position: relative;
-    margin-top: 2em;
-}
-
-.proyecto .contenido {
-    padding: 2em 0;
-}
-
-.proyecto .contenido > * {
-    margin-bottom: 1em;
-}
-
-.proyecto .contenido p {
-    padding: 2em;
-    width: 55%;
-    background-color: #F9EFE7;
-}
-
-.impar .contenido p {
+.titulo i {
     margin-left: auto;
-}
-
-.proyecto img {
-    width: 600px;
-    height: auto;
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.impar img{
-    left: 0;
-}
-
-.lista_lenguajes {
-    display: flex;
-    gap: 1em;
-}
-
-.impar .lista_lenguajes {
-    justify-content: right;
-}
-
-.lista_links :first-child {
-    margin-right: .25em;
-}
-
-.lista_links i {
-    font-size: 1.5rem;
-    color: black;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
 }

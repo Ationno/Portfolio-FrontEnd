@@ -1,0 +1,19 @@
+<div class="proyecto" [ngClass]="{'impar': i%2==1}">
+    <img [src]="this.imageSource" [alt]="this.project.img.titulo">
+    <div class="contenido">
+        <h3> <strong>{{project.titulo}}</strong> 
+            <i class='bx bx-edit editar' 
+                (click)="onEdit(project)"></i>
+            <i class='bx bx-x borrar'
+                (click)="onDelete(project)"></i> 
+        </h3>
+        <p>{{project.parrafo}}</p>
+        <ul class="lista_lenguajes">
+            <li *ngFor=" let elem of project.lenguajes">{{elem}}</li>
+        </ul>
+        <div class="lista_links">
+            <a [href]="project.linkGit"><i class='bx bxl-github' ></i></a>
+            <a [href]="project.linkPag"><i class='bx bx-link-external' ></i></a>
+        </div>
+    </div>
+</div>
