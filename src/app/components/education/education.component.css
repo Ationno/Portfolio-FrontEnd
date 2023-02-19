@@ -7,29 +7,10 @@
     border-left: 2px solid #d1d1d1;
 }
 
-.lista_educacion li {
-    display: flex;
-    position: relative;
-    margin-bottom: 2em;
-}
-
-.lista_educacion li::after {
-    content: " ";
-    width: 20px;
-    height: 20px;
-    background-color: #d1d1d1;
-    position: absolute;
-    top: 0;
-    left: -11px;
-    border-radius: 100%;
-}
-
-.lista_educacion li img {
-    width: 125px;
-    height: auto;
-}
-
-.lista_educacion li .texto h3 i {
-    font-family: 'Mulish', sans-serif;
-    font-size: 1.35rem;
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
 }

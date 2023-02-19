@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProjectService } from '../../service/project.service';
-import { Project } from '../../Project';
+import { Project } from '../../Interfaces/Project';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/service/ui.service';
 
@@ -42,7 +42,6 @@ export class ProjectsComponent {
 	}
 
 	public editProject(project: Project) {
-		console.log(project)
 		this.projectService.edit(project).subscribe(() => {
 			let i: number = this.projects.findIndex(ele => ele.id == project.id);
 			this.projects[i] = project;

@@ -1,0 +1,12 @@
+<li class="elemento_educacion">
+    <img [src]="this.imageSource" alt="this.education.img.titulo"> 
+    <div class="texto">
+        <h3><strong>{{this.education.titulo}} </strong> <i> - {{this.education.institucion}}</i>
+            <i class='bx bx-edit editar' 
+                (click)="onEdit(education)"></i>
+            <i class='bx bx-x borrar'
+                (click)="onDelete(education)"></i> 
+        </h3>
+        <p> <i>{{getDate()}}</i> </p>
+    </div>	
+</li>

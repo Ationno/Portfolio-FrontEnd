@@ -1,7 +1,7 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import disableScroll  from 'disable-scroll';
-import { Skill } from '../Skill';
+import { Skill } from '../Interfaces/Skill';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,13 +9,14 @@ import { Skill } from '../Skill';
 export class UiService {
 	private showAddSkill: boolean = false;
 	private showAddProject: boolean = false;
-	private showEdit: boolean = false;
-	private showEditSkill: Skill = {id: 0, titulo: "", parrafo: "", porcentaje: 0, eleccion: ""}
+	private showAddEducation: boolean = false;
 
 	private showAddSkillSubj = new Subject<any>();
 	private showAddProjectSubj = new Subject<any>();
+	private showAddEducationSubj = new Subject<any>();
+
+	private showEdit: boolean = false;
 	private showEditSubj = new Subject<any>();
-	private showEditSkillSubj = new Subject<Skill>();
 
 	private renderer: Renderer2;
 	
@@ -47,14 +48,15 @@ export class UiService {
 		this.showAddProjectSubj.next(this.showAddProject);
 	}
 
+	public toggleAddEducation(): void {
+		this.overlay(this.showAddEducation);
+		this.showAddEducation = !this.showAddEducation;
+		this.showAddEducationSubj.next(this.showAddEducation);
+	}
+
 	public toggleEdit(valor: boolean): void {
 		this.showEdit = valor;
 		this.showEditSubj.next(this.showEdit);
-	}
-
-	public toggleEditSkill(skill: Skill): void {
-		this.showEditSkill = skill;
-		this.showEditSkillSubj.next(this.showEditSkill);
 	}
 
 	public onToggleAddSkill(): Observable<any> {
@@ -65,12 +67,11 @@ export class UiService {
 		return this.showAddProjectSubj.asObservable();
 	} 
 
+	public onToggleAddEducation(): Observable<any> {
+		return this.showAddEducationSubj.asObservable();
+	}
+
 	public onToggleEdit(): Observable<any> {
 		return this.showEditSubj.asObservable();
 	} 
-
-	public onToggleEditSkill(): Observable<any> {
-		console.log(this.showEditSkill)
-		return this.showEditSkillSubj.asObservable();
-	}
 }

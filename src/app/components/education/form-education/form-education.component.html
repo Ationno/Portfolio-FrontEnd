@@ -1,0 +1,67 @@
+<form 
+    *ngIf="showAddEducation"
+>
+    <i class='bx bx-x cerrar' (click)="cerrar()"></i>
+    <h1>{{showEdit ? 'Editar' : 'Agregar'}} Educacion</h1> 
+    <div class="form-control">
+        <label for="titulo">Titulo de Educacion</label>
+        <input 
+            type="text" 
+            name="titulo" 
+            id="titulo" 
+            placeholder="Agregar titulo"
+            [(ngModel)]="titulo"
+            [value] = "titulo"
+        >
+    </div>
+    <div class="form-control">
+        <label for="institucion">Institución</label>
+        <input 
+            type="text"  
+            name="institucion" 
+            id="institucion" 
+            placeholder="Agregar institucion"
+            [(ngModel)]="institucion"  
+            [value] = "institucion"  
+        >
+    </div>
+    <div class="form-control periodo">
+        <h3 for="periodo">Periodo de aprendizaje</h3>
+        <div style="display: flex; justify-content: space-around;">
+            <div>
+                <label for="inicio">Inicio</label>
+                <input 
+                    type="date" 
+                    name="inicio"
+                    id="inicio"
+                    [(ngModel)]="periodo.inicio"
+                    [value]="periodo.inicio"
+                >
+            </div>
+            <div>
+                <label for="fin">Fin</label>
+                <input 
+                    type="date" 
+                    name="fin"
+                    id="fin"
+                    [(ngModel)]="periodo.fin"
+                    [value]="periodo.fin"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label for="img">Imagen</label>
+        <input type="file" style="display: none;"
+            (change)="onFileSelected($event)" #fileUpload>
+        <div class="file-upload">
+            <button mat-mini-fab color="primary" class="upload-btn"
+                (click)="fileUpload.click()">
+                <i class='bx bx-folder-plus'></i>
+            </button>
+            {{this.img.titulo || "No file uploaded yet."}}
+        </div>
+    </div>
+    <input *ngIf="!showEdit" class="button-green" type="submit" value="Agregar" (click)="add()">
+    <input *ngIf="showEdit" class="button-green" type="submit" value="Editar" (click)="edit()">
+</form>

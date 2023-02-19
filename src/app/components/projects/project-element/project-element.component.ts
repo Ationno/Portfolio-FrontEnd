@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UiService } from 'src/app/service/ui.service';
-import { Project } from '../../../Project';
+import { Project } from '../../../Interfaces/Project';
 
 @Component({
 	selector: 'app-project-element',
@@ -30,7 +30,6 @@ export class ProjectElementComponent {
 	}
 
 	public onEdit(project:Project) {
-		console.log(project)
 		this.onEditFormProject.emit(project);
 		this.uiService.toggleEdit(true);
 		this.uiService.toggleAddProject();

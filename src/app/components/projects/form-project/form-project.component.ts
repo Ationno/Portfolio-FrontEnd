@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Project } from 'src/app/Project';
+import { Project } from 'src/app/Interfaces/Project';
 import { UiService } from 'src/app/service/ui.service';
 
 @Component({
@@ -20,10 +20,8 @@ export class FormProjectComponent {
 	@Input() img: {titulo: string, tipo: string, base64?: string} = {titulo: "", tipo: "", base64: ""};
 	@Input() id?: number = 0;
 	lenguaje: string = "";
-	eleccion: string = "Soft";
 	showAddProject: boolean = false;
 	showEdit: boolean = false;
-	showEleccion : boolean = true;
 	subscriptionAdd?: Subscription;
 	subscriptionEdit?: Subscription;
 

@@ -2,28 +2,25 @@
     <div class="titulo">
         <h2>03. Educacion</h2>
         <div class="linea"></div>
+        <i class='bx bx-plus' (click)="toggleAddEducation()"></i>
     </div>
+    <app-form-education
+        (onAddEducation)="addEducation($event)"
+        (onEditEducation)="editEducation($event)"
+        (toggleAddEducation)="toggleAddEducation()"
+        [titulo] = "educationEdit.titulo"
+        [institucion] = "educationEdit.institucion"
+        [periodo] = "educationEdit.periodo"
+        [img]="educationEdit.img"
+        [id] = "educationEdit.id"
+    >
+    </app-form-education>
     <ul class="lista_educacion">
-        <li>
-            <img src="../../../assets/img/logomc.png" alt="Logo McDonalds"> 
-            <div class="texto">
-                <h3><strong>Estudios Secundarios y Primarios </strong> <i> - Escuela Normal N°1</i></h3>
-                <p> <i>May 2013 - May 2014</i> </p>
-            </div>	
-        </li>
-        <li>
-            <img src="../../../assets/img/logomc.png" alt="Logo McDonalds"> 
-            <div class="texto">
-                <h3><strong>Lic. en Informática </strong> <i> - Universidad Nacional de la Plata</i></h3>
-                <p> <i>May 2013 - May 2014</i> </p>
-            </div>	
-        </li>
-        <li>
-            <img src="../../../assets/img/logomc.png" alt="Logo McDonalds"> 
-            <div class="texto">
-                <h3><strong>Front & End Web Developer</strong> <i> - Argentina Programa</i></h3>
-                <p> <i>May 2013 - May 2014</i> </p>
-            </div>	
-        </li>
+        <app-education-element *ngFor="let education of educations"
+            [education] = "education"
+            (onDeleteEducation)="deleteEducation(education)"
+            (onEditFormEducation)="editToFormEducation(education)"
+        >
+        </app-education-element>
     </ul>
 </section>

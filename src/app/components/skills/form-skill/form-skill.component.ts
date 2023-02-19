@@ -1,6 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs'; 
-import { Skill } from '../../../Skill';
+import { Skill } from '../../../Interfaces/Skill';
 import { UiService } from 'src/app/service/ui.service';
 
 @Component({

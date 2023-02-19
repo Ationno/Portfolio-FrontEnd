@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UiService } from '../../service/ui.service';
 import { Subscription } from 'rxjs';
 import { SkillService } from "src/app/service/skill.service";
-import { Skill } from '../../Skill';
+import { Skill } from '../../Interfaces/Skill';
 
 @Component({
 	selector: 'app-skills',
