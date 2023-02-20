@@ -16,8 +16,9 @@
 }
 
 .elemento_educacion img {
-    width: 125px;
-    height: auto;
+    width: 90px;
+    height: 90px;
+    margin: 0 1em;
 }
 
 .elemento_educacion .texto h3 i {

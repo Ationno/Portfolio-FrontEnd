@@ -1,7 +1,6 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import disableScroll  from 'disable-scroll';
-import { Skill } from '../Interfaces/Skill';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,10 +9,12 @@ export class UiService {
 	private showAddSkill: boolean = false;
 	private showAddProject: boolean = false;
 	private showAddEducation: boolean = false;
+	private showEditAbout: boolean = false;
 
 	private showAddSkillSubj = new Subject<any>();
 	private showAddProjectSubj = new Subject<any>();
 	private showAddEducationSubj = new Subject<any>();
+	private showEditAboutSubj = new Subject<any>();
 
 	private showEdit: boolean = false;
 	private showEditSubj = new Subject<any>();
@@ -54,6 +55,12 @@ export class UiService {
 		this.showAddEducationSubj.next(this.showAddEducation);
 	}
 
+	public toggleEditAbout(): void {
+		this.overlay(this.showEditAbout);
+		this.showEditAbout = !this.showEditAbout;
+		this.showEditAboutSubj.next(this.showEditAbout);
+	}
+
 	public toggleEdit(valor: boolean): void {
 		this.showEdit = valor;
 		this.showEditSubj.next(this.showEdit);
@@ -69,6 +76,10 @@ export class UiService {
 
 	public onToggleAddEducation(): Observable<any> {
 		return this.showAddEducationSubj.asObservable();
+	}
+
+	public onToggleEditAbout(): Observable<any> {
+		return this.showEditAboutSubj.asObservable();
 	}
 
 	public onToggleEdit(): Observable<any> {

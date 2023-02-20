@@ -21,6 +21,6 @@
 
 .cartas .contenido {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
-    gap: 3em;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 175px));
+    gap: 2em;
 }

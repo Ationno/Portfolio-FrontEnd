@@ -13,7 +13,6 @@ export class SkillsComponent {
     skills : Skill[] = [];
 	skillsSoft : Skill[] = [];
 	skillsHard : Skill[] = [];
-    showAddSkill: boolean = false;
 	subscription?: Subscription;
 	editar: boolean = false;
 	skillEdit: Skill = {id: 0, titulo: "", parrafo: "", porcentaje: 0, eleccion: ""};
@@ -27,7 +26,6 @@ export class SkillsComponent {
 		this.skillService.get().subscribe((skills) => {	
 			this.skills = skills
 		})
-		this.subscription = this.uiService.onToggleAddSkill().subscribe( value => this.showAddSkill = value );
 	}
 	
 	public toggleAddSkill() {

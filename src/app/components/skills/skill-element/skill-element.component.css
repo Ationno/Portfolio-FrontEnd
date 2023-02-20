@@ -14,35 +14,35 @@
 
 .chart {
     position: relative;
-    padding: 1em;
+    padding: .75em;
     display: flex;
     justify-content: center;
-    height: 175px;
+    height: 125px;
 }
 
 .chart p {
     position: absolute;
     font-family: 'Bitter', serif;
-    font-size: 2rem;
+    font-size: 1.75rem;
     top: 50%;
-    margin-top: -24px;
+    margin-top: -15px;
 }
 
 .cuerpo_carta {
-    padding: 1em;
+    padding: .75em;
     border-top: 2px solid #d1d1d1;
 }
 
 .titulo .editar {
     margin-left: auto;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: green;
     cursor: pointer;
 }
 
 .titulo .borrar {
     margin-left: 0.25em;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: red;
     cursor: pointer;
 }

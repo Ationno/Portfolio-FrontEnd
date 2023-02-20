@@ -1,0 +1,31 @@
+<form 
+    *ngIf="showEditAbout"
+>
+    <i class='bx bx-x cerrar' (click)="cerrar()"></i>
+    <h1>Editar Educacion</h1> 
+    <div class="form-control">
+        <label for="parrafo">Parrafo de explicación</label>
+        <textarea 
+            type="text" 
+            name="parrafo" 
+            id="parrafo" 
+            placeholder="Agregar parrafo"
+            [(ngModel)]="parrafo"
+            [value] = "parrafo"
+            cols="50" rows="15"
+        ></textarea>
+    </div>
+    <div class="form-control">
+        <label for="img">Imagen</label>
+        <input type="file" style="display: none;"
+            (change)="onFileSelected($event)" #fileUpload>
+        <div class="file-upload">
+            <button mat-mini-fab color="primary" class="upload-btn"
+                (click)="fileUpload.click()">
+                <i class='bx bx-folder-plus'></i>
+            </button>
+            {{this.img.titulo || "No file uploaded yet."}}
+        </div>
+    </div>
+    <input class="button-green" type="submit" value="Editar" (click)="edit()">
+</form>

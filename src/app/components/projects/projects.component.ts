@@ -12,7 +12,6 @@ import { UiService } from 'src/app/service/ui.service';
 
 export class ProjectsComponent {
 	projects : Project[] = [];
-    showAddProject: boolean = false;
 	subscription?: Subscription;
 	editar: boolean = false;
 	projectEdit: Project = {id: 0, titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
@@ -26,7 +25,6 @@ export class ProjectsComponent {
 		this.projectService.get().subscribe((projects) => {	
 			this.projects = projects
 		})
-		this.subscription = this.uiService.onToggleAddProject().subscribe( value => this.showAddProject = value );
 	}
 	
 	public toggleAddProject() {

@@ -1,7 +1,7 @@
 .acerca_de {
     margin: 15% 20% 0 20%;
     display: flex;
-    overflow:auto;
+    /*overflow:auto;*/
     justify-content: space-between;
 }
 
@@ -33,6 +33,13 @@
     background-color: #d1d1d1;
 }
 
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
 
 .imagen .linea1 {
     position: absolute;
@@ -60,4 +67,6 @@
 
 .acerca_de p {
     margin-top: 20px;
+    white-space: pre-line;
+    line-height: 1.75;
 }

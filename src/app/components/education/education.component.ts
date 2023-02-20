@@ -13,7 +13,6 @@ import { UiService } from 'src/app/service/ui.service';
 
 export class EducationComponent {
 	educations : Education[] = [];
-	showAddEducation: boolean = false;
 	subscription?: Subscription;
 	editar: boolean = false;
 	educationEdit: Education = {id: 0, titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
@@ -27,7 +26,6 @@ export class EducationComponent {
 		this.educationService.get().subscribe((educations) => {	
 			this.educations = educations
 		})
-		this.subscription = this.uiService.onToggleAddEducation().subscribe( value => this.showAddEducation = value );
 	}
 	
 	public toggleAddEducation() {
