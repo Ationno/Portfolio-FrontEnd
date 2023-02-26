@@ -1,0 +1,28 @@
+<div class="div_formulario">
+<form>
+    <h1>Ingresar</h1> 
+    <div class="form-control">
+        <label for="usuario"><i class='bx bxs-user'></i></label>
+        <input 
+            type="text" 
+            name="usuario" 
+            id="usuario" 
+            placeholder="Usuario"
+            [(ngModel)]="usuario"
+            [value] = "usuario"
+        >
+    </div>
+    <div class="form-control">
+        <label for="password"><i class='bx bxs-lock-alt' ></i></label>
+        <input 
+            type="password"  
+            name="password" 
+            id="password" 
+            placeholder="Contraseña"
+            [(ngModel)]="password"
+            [value] = "password" 
+        >
+    </div>
+    <input class="button-green" type="submit" value="Acceder">
+</form>
+</div>

@@ -1,6 +1,7 @@
 .experiencia {
     margin: 15% 20% 0 30%;
     width: 45%;
+    min-height: 450px;
 }
 
 .experiencia .contenido {
@@ -11,28 +12,34 @@
 }
 
 .lista_trabajos > * {
+    align-items: center;
+    display: flex;
     font-size: 1.25em;
     padding: 7.5px 0 7.5px 15px;
     border-left: 2px solid #d1d1d1;
+    cursor: pointer;
 }
 
-.lista_trabajos :first-child {
-    border-left: 2px solid #b9d1d1;
+.lista_trabajos > * i {
+    border: none;
+    margin-left: .5em;
 }
 
-.opcion_tomada h3 img {
-    width: 70px;
-    height: 37px;
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
 }
 
-.opcion_tomada ul {
-    margin-top: 15px;
+.clicked {
+    animation: clicked 0.25s ease-in-out 0s forwards;
 }
 
-.opcion_tomada ul > *{
-    margin-bottom: 10px;
-}
-
-.opcion_tomada ul li i {
-    font-size: 0.7rem;
+@keyframes clicked {
+    100% {
+        border-left: 2px solid green;
+        transform: scale(1.1) translateX(5px);
+    }
 }

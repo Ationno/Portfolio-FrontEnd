@@ -10,11 +10,13 @@ export class UiService {
 	private showAddProject: boolean = false;
 	private showAddEducation: boolean = false;
 	private showEditAbout: boolean = false;
+	private showAddExperience: boolean = false;
 
 	private showAddSkillSubj = new Subject<any>();
 	private showAddProjectSubj = new Subject<any>();
 	private showAddEducationSubj = new Subject<any>();
 	private showEditAboutSubj = new Subject<any>();
+	private showAddExperienceSubj = new Subject<any>();
 
 	private showEdit: boolean = false;
 	private showEditSubj = new Subject<any>();
@@ -61,6 +63,12 @@ export class UiService {
 		this.showEditAboutSubj.next(this.showEditAbout);
 	}
 
+	public toggleAddExperience(): void {
+		this.overlay(this.showAddExperience);
+		this.showAddExperience = !this.showAddExperience;
+		this.showAddExperienceSubj.next(this.showAddExperience);
+	}
+
 	public toggleEdit(valor: boolean): void {
 		this.showEdit = valor;
 		this.showEditSubj.next(this.showEdit);
@@ -80,6 +88,10 @@ export class UiService {
 
 	public onToggleEditAbout(): Observable<any> {
 		return this.showEditAboutSubj.asObservable();
+	}
+
+	public onToggleAddExperience(): Observable<any> {
+		return this.showAddExperienceSubj.asObservable();
 	}
 
 	public onToggleEdit(): Observable<any> {

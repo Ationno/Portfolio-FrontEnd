@@ -36,10 +36,9 @@ export class FormEducationComponent {
 		} else if (!this.institucion) {
 			alert("Agregar parrafo")
 			return false
-		} else if (!this.periodo) {
-			alert("Agregar link GitHub del proyecto")
 		} else if (!this.img) {
 			alert("Agregar Imagen")
+			return false
 		}
 		return true
 	}

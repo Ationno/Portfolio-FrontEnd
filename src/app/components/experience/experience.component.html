@@ -2,22 +2,27 @@
     <div class="titulo">
         <h2>02. Experiencia</h2>
         <div class="linea"></div>
+        <i class='bx bx-plus' (click)="toggleAddExperience()"></i>
     </div>
+    <app-form-experience
+        (onAddExperience)="addExperience($event)"
+        (onEditExperience)="editExperience($event)"
+        (toggleAddExperience)="toggleAddExperience()"
+        [titulo] = "experienceEdit.titulo"
+        [empresa] = "experienceEdit.empresa"
+        [periodo] = "experienceEdit.periodo"
+        [aprendizajes]= "experienceEdit.aprendizajes"
+        [img] = "experienceEdit.img"
+        [id] = "experienceEdit.id"
+    ></app-form-experience>
     <div class="contenido">
         <ul class="lista_trabajos">
-            <li>McDonalds</li>
-            <li>Apple</li>
-            <li>Starbucks</li>
-            <li>Mostaza</li>
+            <li *ngFor="let elem of experiences" [ngClass]="elem.empresa" (click)="choseExperience(elem.empresa)">{{elem.empresa}}</li>
         </ul>
-        <div class="opcion_tomada">
-            <h3> <strong>Ingeniero </strong> @ McDonalds <img src="../../../assets/img/logomc.png" alt="Logo McDonalds"></h3>
-            <p> <i>May 2013 - May 2014</i> </p>
-            <ul>
-                <li> <i class='bx bxs-right-arrow' ></i> Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, a huge corporation, and a</li>
-                <li> <i class='bx bxs-right-arrow' ></i> Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, a huge corporation, and a</li>
-                <li> <i class='bx bxs-right-arrow' ></i> Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, a huge corporation, and a</li>
-            </ul>
-        </div>
+        <app-experience-element *ngIf="!this.noExperience"
+            [experience] = "experienceChosen"
+            (onDeleteExperience)="deleteExperience(experienceChosen)"
+            (onEditFormExperience)="editToFormExperience(experienceChosen)"
+        ></app-experience-element>
     </div>
 </section>

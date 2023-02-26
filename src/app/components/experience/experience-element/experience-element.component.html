@@ -1,0 +1,10 @@
+<div class="opcion_tomada">
+    <h3> <strong>{{experience.titulo}}</strong> @ {{experience.empresa}} <img [src]="this.imageSource" [alt]="experience.img.titulo">
+        <i class='bx bx-edit editar' (click)="onEdit(experience)"></i>
+        <i class='bx bx-x borrar' (click)="onDelete(experience)"></i>
+    </h3>
+    <p> <i>{{getDate()}}</i> </p>
+    <ul>
+        <li *ngFor="let elem of experience.aprendizajes"> <i class='bx bxs-right-arrow' ></i> {{elem}}</li>
+    </ul>
+</div>

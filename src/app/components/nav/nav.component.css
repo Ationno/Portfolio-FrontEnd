@@ -13,6 +13,8 @@
 
 .barra_navegacion .yoprogramo {
     font-weight: 1000;
+    text-decoration: none;
+    color: black;
 }
 
 .barra_navegacion i {
