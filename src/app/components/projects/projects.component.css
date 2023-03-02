@@ -1,0 +1,19 @@
+.proyectos {
+    margin: 15% 20% 0 20%;
+}
+
+.lista_proyectos {
+    margin-top: 2em;
+}
+
+.lista_proyectos .impar {
+    text-align: right;
+}
+
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
+}

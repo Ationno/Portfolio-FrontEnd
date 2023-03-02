@@ -1,0 +1,42 @@
+.elemento_educacion {
+    display: flex;
+    position: relative;
+    margin-bottom: 2em;
+}
+
+.elemento_educacion::after {
+    content: " ";
+    width: 20px;
+    height: 20px;
+    background-color: #d1d1d1;
+    position: absolute;
+    top: 0;
+    left: -11px;
+    border-radius: 100%;
+}
+
+.elemento_educacion img {
+    width: 90px;
+    height: 90px;
+    margin: 0 1em;
+}
+
+.elemento_educacion .texto h3 i {
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.35rem;
+}
+
+
+h3 .editar {
+    margin-left: 0.5em;
+    font-size: 1.5rem;
+    color: green;
+    cursor: pointer;
+}
+
+h3 .borrar {
+    margin-left: 0.25em;
+    font-size: 1.5rem;
+    color: red;
+    cursor: pointer;
+}

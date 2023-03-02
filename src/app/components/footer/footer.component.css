@@ -1,0 +1,14 @@
+footer {
+    margin: 4em 0 2em 0;
+}
+
+footer p {
+    display: flex;
+    justify-content: center;
+}
+
+footer p i{
+    align-self: center;
+    margin-left: 0.5em;
+    font-size: 1.3rem;
+}

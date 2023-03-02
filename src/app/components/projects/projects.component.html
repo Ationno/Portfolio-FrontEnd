@@ -1,0 +1,24 @@
+<section class="proyectos">
+    <div class="titulo">
+        <h2>05. Proyectos</h2>
+        <div class="linea"></div>
+        <i class='bx bx-plus' (click)="toggleFormProject()"></i>
+    </div>
+    <app-form-project
+        (onAddProject)="addProject($event)"
+        (onEditProject)="editProject($event)"
+        (onToggleFormProject)="toggleFormProject()"
+        [project]="project"
+    >
+    </app-form-project>
+    <div class="lista_proyectos">
+        <app-project-element 
+            *ngFor="let project of projects; let i = index"
+            [project] = "project"
+            [ngClass]="{'impar': i%2==1}"
+            [i] = "i"
+            (onDeleteProject)="deleteProject($event)"
+            (onEditFormProject)="editFormProject($event)"
+        ></app-project-element>
+    </div>   
+</section>

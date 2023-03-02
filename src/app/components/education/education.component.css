@@ -1,0 +1,16 @@
+.educacion {
+    margin: 15% 20% 0 20%;
+}
+
+.lista_educacion {
+    margin-top: 2em;
+    border-left: 2px solid #d1d1d1;
+}
+
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
+}

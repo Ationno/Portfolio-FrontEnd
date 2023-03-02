@@ -1,0 +1,45 @@
+.experiencia {
+    margin: 15% 20% 0 30%;
+    width: 45%;
+    min-height: 450px;
+}
+
+.experiencia .contenido {
+    display: flex;
+    overflow: auto;
+    gap: 10%;
+    margin: 35px 0 0 0;
+}
+
+.lista_trabajos > * {
+    align-items: center;
+    display: flex;
+    font-size: 1.25em;
+    padding: 7.5px 0 7.5px 15px;
+    border-left: 2px solid #d1d1d1;
+    cursor: pointer;
+}
+
+.lista_trabajos > * i {
+    border: none;
+    margin-left: .5em;
+}
+
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
+.clicked {
+    animation: clicked 0.25s ease-in-out 0s forwards;
+}
+
+@keyframes clicked {
+    100% {
+        border-left: 2px solid green;
+        transform: scale(1.1) translateX(5px);
+    }
+}

@@ -1,0 +1,71 @@
+.proyecto {
+    position: relative;
+    margin-top: 2em;
+}
+
+.proyecto .contenido {
+    padding: 2em 0;
+}
+
+.proyecto .contenido > * {
+    margin-bottom: 1em;
+}
+
+.proyecto .contenido p {
+    word-wrap: break-word;
+    padding: 2em;
+    width: 55%;
+    background-color: #F9EFE7;
+}
+
+.impar .contenido p {
+    margin-left: auto;
+}
+
+.proyecto img {
+    max-width: 600px;
+    max-height: 300px;
+    min-height: 300px;
+    height: auto;
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+}
+
+.impar img{
+    left: 0;
+}
+
+.lista_lenguajes {
+    display: flex;
+    gap: 1em;
+}
+
+.impar .lista_lenguajes {
+    justify-content: right;
+}
+
+.lista_links :first-child {
+    margin-right: .25em;
+}
+
+.lista_links i {
+    font-size: 1.5rem;
+    color: black;
+}
+
+h3 .editar {
+    margin-left: 0.5em;
+    font-size: 1.5rem;
+    color: green;
+    cursor: pointer;
+}
+
+h3 .borrar {
+    margin-left: 0.25em;
+    font-size: 1.5rem;
+    color: red;
+    cursor: pointer;
+}

@@ -1,0 +1,26 @@
+.habilidades {
+    margin: 15% 20% 0 30%;
+}
+
+.titulo i {
+    margin-left: auto;
+    align-self: center;
+    color: green;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
+.cartas {
+    margin-top: 2em;
+}
+
+.cartas h3 {
+    margin: 1em 0;
+    text-align: center;
+}
+
+.cartas .contenido {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 175px));
+    gap: 2em;
+}

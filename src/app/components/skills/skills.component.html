@@ -1,0 +1,35 @@
+<section class="habilidades">
+    <div class="titulo">
+        <h2>04. Hard & Soft Skills</h2>
+        <div class="linea"></div>
+        <i class='bx bx-plus' (click)="toggleFormSkill()"></i>
+    </div>
+    <app-form-skill 
+        (onAddSkill)="addSkill($event)"
+        (onEditSkill)="editSkill($event)"
+        (onToggleFormSkill)="toggleFormSkill()"
+        [skill]="skill"
+    ></app-form-skill>
+    <div class="cartas">
+        <h3>Soft Skills</h3>
+        <div class="contenido">
+            <app-skill-element 
+                *ngFor="let skill of getSoftSkills()" 
+                [skill] = "skill"
+                (onDeleteSkill)="deleteSkill(skill)"
+                (onEditFormSkill)="editFormSkill(skill)"
+            >
+            </app-skill-element>
+        </div>
+        <h3>Hard Skills</h3>
+        <div class="contenido">
+            <app-skill-element 
+                *ngFor="let skill of getHardSkills()" 
+                [skill] = "skill"
+                (onDeleteSkill)="deleteSkill(skill)"
+                (onEditFormSkill)="editFormSkill(skill)"
+            >
+            </app-skill-element>
+        </div>		
+    </div>
+</section>
