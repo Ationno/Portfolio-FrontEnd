@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,7 @@ import { ExperienceElementComponent } from './components/experience/experience-e
 import { FormExperienceComponent } from './components/experience/form-experience/form-experience.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
 	declarations: [
@@ -54,6 +55,16 @@ import { LoginComponent } from './components/login/login.component';
 		AppRoutingModule,
 		HttpClientModule,
 		FormsModule,
+		ReactiveFormsModule,
+		NgCircleProgressModule.forRoot({
+			// set defaults here
+			radius: 100,
+			outerStrokeWidth: 16,
+			innerStrokeWidth: 8,
+			outerStrokeColor: "#78C000",
+			innerStrokeColor: "#C7E596",
+			animationDuration: 300,
+		})
 	],
 	providers: [],
 	bootstrap: [AppComponent]

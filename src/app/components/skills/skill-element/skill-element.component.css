@@ -13,19 +13,10 @@
 
 
 .chart {
-    position: relative;
-    padding: .75em;
+    padding: .25em;
+    font-family: 'Bitter', serif;
     display: flex;
     justify-content: center;
-    height: 125px;
-}
-
-.chart p {
-    position: absolute;
-    font-family: 'Bitter', serif;
-    font-size: 1.75rem;
-    top: 50%;
-    margin-top: -15px;
 }
 
 .cuerpo_carta {

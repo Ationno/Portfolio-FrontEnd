@@ -1,51 +1,59 @@
 <form 
-    *ngIf="showAddSkill"
+    *ngIf="showFormSkill" [formGroup]="form"
 >
-    <i class='bx bx-x' (click)="cerrar()"></i>
-    <h1>{{showEdit ? 'Editar' : 'Agregar'}} Habilidad</h1> 
+    <i class='bx bx-x' (click)="onClose()"></i>
+    <h1>{{skill.id ? 'Editar' : 'Agregar'}} Habilidad</h1> 
     <div class="form-control">
         <label for="titulo">Titulo de habilidad</label>
         <input 
             type="text" 
             name="titulo" 
-            id="titulo" 
             placeholder="Agregar titulo"
-            [(ngModel)]="titulo"
-            [value] = "titulo"
+            formControlName="titulo"
         >
+        <div *ngIf="Titulo?.errors && Titulo?.touched" class="error">
+            <p *ngIf="Titulo?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="parrafo">Parrafo de explicacion</label>
         <textarea 
             type="text"  
             name="parrafo" 
-            id="parrafo" 
             placeholder="Agregar parrafo"
-            [(ngModel)]="parrafo"  
-            [value] = "parrafo"  
             cols="30" rows="5"
             maxlength="300"
+            formControlName="parrafo"
         ></textarea>
+        <div *ngIf="Parrafo?.errors && Parrafo?.touched" class="error">
+            <p *ngIf="Parrafo?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="porcentaje">Porcentaje</label>
         <input 
             type="number" 
             name="porcentaje" 
-            id="porcentaje" 
             ngValue=12
             placeholder="Agregar porcentaje"
-            [(ngModel)]="porcentaje"
-            [value]="porcentaje"
+            formControlName="porcentaje"
         >
+        <div *ngIf="Porcentaje?.errors && Porcentaje?.touched" class="error">
+            <p *ngIf="Porcentaje?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
     </div>
-    <div class="form-control" *ngIf="!showEdit">
-        <label for="choice">Tipo de habilidad</label>
-        <select [(ngModel)]="eleccion" id="choice" name="eleccion">
-            <option [ngValue]="'Soft'" value="Soft">Soft Skill</option>
-            <option [ngValue]="'Hard'" value="Hard">Hard Skill</option>
+    <div class="form-control" *ngIf="skill.id == null">
+        <label for="eleccion">Tipo de habilidad</label>
+        <select name="eleccion" formControlName="eleccion">
+            <option [selected]="true" value="Soft">Soft Skill</option>
+            <option value="Hard">Hard Skill</option>
         </select>
     </div>
-    <input *ngIf="!showEdit" class="button-green" type="submit" value="Agregar" (click)="add()">
-    <input *ngIf="showEdit" class="button-green" type="submit" value="Editar" (click)="edit()">
+    <input class="button-green" type="submit" [value]="skill.id != null ? 'Editar' : 'Agregar'" (click)="skill.id != null ? onEdit() : onAdd()">
 </form>

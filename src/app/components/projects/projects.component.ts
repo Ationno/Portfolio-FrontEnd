@@ -13,8 +13,7 @@ import { UiService } from 'src/app/service/ui.service';
 export class ProjectsComponent {
 	projects : Project[] = [];
 	subscription?: Subscription;
-	editar: boolean = false;
-	projectEdit: Project = {id: 0, titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+	project: Project = {titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
 
     constructor(
 		private projectService: ProjectService,
@@ -27,10 +26,9 @@ export class ProjectsComponent {
 		})
 	}
 	
-	public toggleAddProject() {
-		this.projectEdit = {id: 0, titulo: "", parrafo: "", lenguajes: [], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
-		this.uiService.toggleEdit(false);
-		this.uiService.toggleAddProject();
+	public toggleFormProject() {
+		this.project = {titulo: "", parrafo: "", lenguajes: [], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+		this.uiService.toggleFormProject();
 	}
 
 	public deleteProject(project: Project) {
@@ -52,7 +50,7 @@ export class ProjectsComponent {
 		});
 	}
 
-	public editToFormProject(project: Project) {
-		this.projectEdit = project;
+	public editFormProject(project: Project) {
+		this.project = project;
 	}
 }

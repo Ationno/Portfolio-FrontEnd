@@ -1,7 +1,8 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs'; 
 import { Skill } from '../../../Interfaces/Skill';
 import { UiService } from 'src/app/service/ui.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-form-skill',
@@ -11,70 +12,70 @@ import { UiService } from 'src/app/service/ui.service';
 export class FormSkillComponent {
 	@Output() onAddSkill: EventEmitter<Skill> = new EventEmitter();
 	@Output() onEditSkill: EventEmitter<Skill> = new EventEmitter();
-	@Output() toggleAddSkill: EventEmitter<Event> = new EventEmitter();
-	@Input() titulo: string = "";
-	@Input() parrafo: string = "";
-	@Input() porcentaje: number = 0;
-	@Input() id?: number = 0;
-	eleccion: string = "Soft";
-	showAddSkill: boolean = false;
-	showEdit: boolean = false;
+	@Output() onToggleFormSkill: EventEmitter<Event> = new EventEmitter();
+	@Input() skill: Skill = {titulo: "", parrafo: "", porcentaje:0, eleccion:""}; 
+	showFormSkill: boolean = false;
 	showEleccion : boolean = true;
-	subscriptionAdd?: Subscription;
-	subscriptionEdit?: Subscription;
-	subscriptionEditSkill?: Subscription;
+	subscription?: Subscription;
+	form: FormGroup;
 
 	constructor(
-		private uiService: UiService
+		private uiService: UiService,
+		private formBuilder: FormBuilder
 	) {
-		this.subscriptionAdd = this.uiService.onToggleAddSkill().subscribe( value => this.showAddSkill = value );
-		this.subscriptionEdit = this.uiService.onToggleEdit().subscribe( value => this.showEdit = value );
+		this.subscription = this.uiService.onToggleFormSkill().subscribe( value => this.showFormSkill = value );
+		this.form = this.formBuilder.group({
+			id: [],
+			titulo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
+			parrafo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			porcentaje: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			eleccion: new FormControl('')
+		})
 	}
 	
-	private securitySkill(): boolean {
-		if (!this.titulo) {
-			alert("Agregar titulo")
-			return false
-		} else if (!this.parrafo) {
-			alert("Agregar parrafo")
-			return false
-		} else if (this.porcentaje<0 || this.porcentaje > 100) {
-			alert("Colocar un valor valido en porcentaje")
-			return false
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes['skill']?.currentValue) 
+			this.form?.patchValue(this.skill);
+	}
+
+	get Titulo(){
+		return this.form.get("titulo");
+	}
+
+	get Parrafo(){
+		return this.form.get("institucion");
+	}
+		
+	get Porcentaje(){
+		return this.form.get("periodo")?.get("inicio");	
+	}
+
+	public onClose(): void {
+		this.onToggleFormSkill.emit();
+		this.form.reset();
+	}
+
+	public onAdd(): void {
+		if (this.form.valid) {
+			this.onAddSkill.emit(this.form.getRawValue());
+			this.onToggleFormSkill.emit();
+			this.form.reset()
+			alert("Success!")
+		} else {
+			console.log(this.form.errors)
+			this.form.markAllAsTouched();
 		}
-		return true
 	}
 
-	private resetVariables(): void {
-		this.titulo = ""
-		this.parrafo = ""
-		this.porcentaje = 0
-	}
-
-	public add(): void {
-		const {titulo, parrafo, porcentaje, eleccion} = this
-		const newSkill = {titulo, parrafo, porcentaje, eleccion}
-		if (this.securitySkill()) {
-			this.onAddSkill.emit(newSkill);
-			this.toggleAddSkill.emit();
-			this.resetVariables();
-		} else
-			return
-	}
-
-	public edit(): void {
-		const {titulo, parrafo, porcentaje, eleccion, id} = this
-		const newSkill = {titulo, parrafo, porcentaje, eleccion, id}
-		if (this.securitySkill()) {
-			this.onEditSkill.emit(newSkill);
-			this.toggleAddSkill.emit();
-			this.resetVariables();
-		} else
-			return
-	}
-
-	public cerrar(): void {
-		this.toggleAddSkill.emit();
-		this.resetVariables();
+	public onEdit(): void {
+		if (this.form.valid) {
+			this.onEditSkill.emit(this.form.getRawValue());
+			this.onToggleFormSkill.emit();
+			this.form.reset()
+			alert("Success!")
+		} else {
+			console.log(this.form.errors)
+			this.form.markAllAsTouched();
+		}
 	}
 }

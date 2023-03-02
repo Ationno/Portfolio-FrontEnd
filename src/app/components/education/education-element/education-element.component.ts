@@ -11,7 +11,7 @@ import { UiService } from 'src/app/service/ui.service';
 export class EducationElementComponent {
 	@Input() education: Education = {titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
 	@Output() onDeleteEducation: EventEmitter<Education> = new EventEmitter();
-	@Output() onEditFormEducation: EventEmitter<Education> = new EventEmitter();
+	@Output() onEditEducation: EventEmitter<Education> = new EventEmitter();
 	inicio: Date = new Date();
 	fin: Date = new Date();
 	imageSource: any;
@@ -32,9 +32,8 @@ export class EducationElementComponent {
 	}
 
 	public onEdit(education: Education) {
-		this.onEditFormEducation.emit(education);
-		this.uiService.toggleEdit(true);
-		this.uiService.toggleAddEducation();
+		this.onEditEducation.emit(education);
+		this.uiService.toggleFormEducation();
 	}
 
 	public getDate(): string {

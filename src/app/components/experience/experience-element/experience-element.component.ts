@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Experience } from 'src/app/Interfaces/Experience';
 import { UiService } from 'src/app/service/ui.service';
@@ -11,7 +11,7 @@ import { UiService } from 'src/app/service/ui.service';
 export class ExperienceElementComponent {
 	@Input() experience: Experience = {id: 0, titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [""], img: {titulo: "", tipo: "", base64: ""}};
 	@Output() onDeleteExperience: EventEmitter<Experience> = new EventEmitter();
-	@Output() onEditFormExperience: EventEmitter<Experience> = new EventEmitter();
+	@Output() onEditExperience: EventEmitter<Experience> = new EventEmitter();
 	imageSource: any;
 	inicio: Date = new Date();
 	fin: Date = new Date();
@@ -32,9 +32,8 @@ export class ExperienceElementComponent {
 	}
 
 	public onEdit(experience: Experience) {
-		this.onEditFormExperience.emit(experience);
-		this.uiService.toggleEdit(true);
-		this.uiService.toggleAddExperience();
+		this.onEditExperience.emit(experience);
+		this.uiService.toggleFormExperience();
 	}
 
 	public getDate(): string {

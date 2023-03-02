@@ -24,7 +24,6 @@ export class SkillElementComponent {
 
 	public onEdit(skill:Skill) {
 		this.onEditFormSkill.emit(skill);
-		this.uiService.toggleEdit(true);
-		this.uiService.toggleAddSkill();
+		this.uiService.toggleFormSkill();
 	}
 }

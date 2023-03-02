@@ -6,17 +6,17 @@ import disableScroll  from 'disable-scroll';
 	providedIn: 'root'
 })
 export class UiService {
-	private showAddSkill: boolean = false;
-	private showAddProject: boolean = false;
-	private showAddEducation: boolean = false;
-	private showEditAbout: boolean = false;
-	private showAddExperience: boolean = false;
+	private showFormSkill: boolean = false;
+	private showFormProject: boolean = false;
+	private showFormEducation: boolean = false;
+	private showFormAbout: boolean = false;
+	private showFormExperience: boolean = false;
 
-	private showAddSkillSubj = new Subject<any>();
-	private showAddProjectSubj = new Subject<any>();
-	private showAddEducationSubj = new Subject<any>();
-	private showEditAboutSubj = new Subject<any>();
-	private showAddExperienceSubj = new Subject<any>();
+	private showFormSkillSubj = new Subject<any>();
+	private showFormProjectSubj = new Subject<any>();
+	private showFormEducationSubj = new Subject<any>();
+	private showFormAboutSubj = new Subject<any>();
+	private showFormExperienceSubj = new Subject<any>();
 
 	private showEdit: boolean = false;
 	private showEditSubj = new Subject<any>();
@@ -39,34 +39,34 @@ export class UiService {
 		}
 	}
 
-	public toggleAddSkill(): void {
-		this.overlay(this.showAddSkill);
-		this.showAddSkill = !this.showAddSkill;
-		this.showAddSkillSubj.next(this.showAddSkill);
+	public toggleFormSkill(): void {
+		this.overlay(this.showFormSkill);
+		this.showFormSkill = !this.showFormSkill;
+		this.showFormSkillSubj.next(this.showFormSkill);
 	}
 
-	public toggleAddProject(): void {
-		this.overlay(this.showAddProject);
-		this.showAddProject = !this.showAddProject;
-		this.showAddProjectSubj.next(this.showAddProject);
+	public toggleFormProject(): void {
+		this.overlay(this.showFormProject);
+		this.showFormProject = !this.showFormProject;
+		this.showFormProjectSubj.next(this.showFormProject);
 	}
 
-	public toggleAddEducation(): void {
-		this.overlay(this.showAddEducation);
-		this.showAddEducation = !this.showAddEducation;
-		this.showAddEducationSubj.next(this.showAddEducation);
+	public toggleFormEducation(): void {
+		this.overlay(this.showFormEducation);
+		this.showFormEducation = !this.showFormEducation;
+		this.showFormEducationSubj.next(this.showFormEducation);
 	}
 
-	public toggleEditAbout(): void {
-		this.overlay(this.showEditAbout);
-		this.showEditAbout = !this.showEditAbout;
-		this.showEditAboutSubj.next(this.showEditAbout);
+	public toggleFormAbout(): void {
+		this.overlay(this.showFormAbout);
+		this.showFormAbout = !this.showFormAbout;
+		this.showFormAboutSubj.next(this.showFormAbout);
 	}
 
-	public toggleAddExperience(): void {
-		this.overlay(this.showAddExperience);
-		this.showAddExperience = !this.showAddExperience;
-		this.showAddExperienceSubj.next(this.showAddExperience);
+	public toggleFormExperience(): void {
+		this.overlay(this.showFormExperience);
+		this.showFormExperience = !this.showFormExperience;
+		this.showFormExperienceSubj.next(this.showFormExperience);
 	}
 
 	public toggleEdit(valor: boolean): void {
@@ -74,24 +74,24 @@ export class UiService {
 		this.showEditSubj.next(this.showEdit);
 	}
 
-	public onToggleAddSkill(): Observable<any> {
-		return this.showAddSkillSubj.asObservable();
+	public onToggleFormSkill(): Observable<any> {
+		return this.showFormSkillSubj.asObservable();
 	} 
 
-	public onToggleAddProject(): Observable<any> {
-		return this.showAddProjectSubj.asObservable();
+	public onToggleFormProject(): Observable<any> {
+		return this.showFormProjectSubj.asObservable();
 	} 
 
-	public onToggleAddEducation(): Observable<any> {
-		return this.showAddEducationSubj.asObservable();
+	public onToggleFormEducation(): Observable<any> {
+		return this.showFormEducationSubj.asObservable();
 	}
 
-	public onToggleEditAbout(): Observable<any> {
-		return this.showEditAboutSubj.asObservable();
+	public onToggleFormAbout(): Observable<any> {
+		return this.showFormAboutSubj.asObservable();
 	}
 
-	public onToggleAddExperience(): Observable<any> {
-		return this.showAddExperienceSubj.asObservable();
+	public onToggleFormExperience(): Observable<any> {
+		return this.showFormExperienceSubj.asObservable();
 	}
 
 	public onToggleEdit(): Observable<any> {

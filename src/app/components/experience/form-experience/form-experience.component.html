@@ -1,29 +1,35 @@
 <form 
-    *ngIf="showAddExperience"
+    *ngIf="showFormExperience" [formGroup]="form"
 >
-    <i class='bx bx-x cerrar' (click)="cerrar()"></i>
-    <h1>{{showEdit ? 'Editar' : 'Agregar'}} Experiencia</h1> 
+    <i class='bx bx-x cerrar' (click)="onClose()"></i>
+    <h1>{{experience.id != null ? 'Editar' : 'Agregar'}} Experiencia</h1> 
     <div class="form-control">
         <label for="titulo">Titulo de Experienca</label>
         <input 
             type="text" 
             name="titulo" 
-            id="titulo" 
             placeholder="Agregar titulo"
-            [(ngModel)]="titulo"
-            [value] = "titulo"
+            formControlName="titulo"
         >
+        <div *ngIf="Titulo?.errors && Titulo?.touched" class="error">
+            <p *ngIf="Titulo?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="empresa">Empresa trabajada</label>
         <input 
             type="text"  
             name="empresa" 
-            id="empresa" 
             placeholder="Agregar empresa"
-            [(ngModel)]="empresa"  
-            [value] = "empresa"  
+            formControlName="empresa"  
         >
+        <div *ngIf="Empresa?.errors && Empresa?.touched" class="error">
+            <p *ngIf="Empresa?.hasError('required')">
+                La empresa es requerida
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="aprendizaje">Aprendizajes</label>
@@ -31,18 +37,16 @@
             <input 
                 type="text" 
                 name="aprendizaje" 
-                id="aprendizaje" 
                 placeholder="Agregar aprendizaje"
-                [(ngModel)]="aprendizaje"
-                [value]="aprendizaje"
-                (keydown.enter)="agregarAprendizaje()"
+                formControlName="aprendizaje"
+                (keydown.enter)="onAddAprendizaje()"
             >
             <button>
-                <i class='bx bx-plus agregar_lenguaje' (click)="agregarAprendizaje()"></i>
+                <i class='bx bx-plus agregar_lenguaje' (click)="onAddAprendizaje()"></i>
             </button>
         </div>
         <ul class="aprendizajes_elegidos">
-            <li *ngFor="let aprendizaje of aprendizajes">{{aprendizaje.slice(0,9) + "..."}} <i class='bx bx-x' (click)="eliminarAprendizaje(aprendizaje)"></i></li> 
+            <li *ngFor="let aprendizaje of aprendizajes">{{aprendizaje.slice(0,9) + "..."}} <i class='bx bx-x' (click)="onDeleteAprendizaje(aprendizaje)"></i></li> 
         </ul>
     </div>
     <div class="form-control periodo">
@@ -50,23 +54,33 @@
         <div style="display: flex; justify-content: space-around;">
             <div>
                 <label for="inicio">Inicio</label>
-                <input 
-                    type="date" 
-                    name="inicio"
-                    id="inicio"
-                    [(ngModel)]="periodo.inicio"
-                    [value]="periodo.inicio"
-                >
+                <ng-container formGroupName="periodo"> 
+                    <input 
+                        type="date" 
+                        name="inicio"
+                        formControlName="inicio"
+                    >
+                    <div *ngIf="Inicio?.errors && Inicio?.touched" class="error">
+                        <p *ngIf="Inicio?.hasError('required')">
+                            El periodo de inicio es requerido
+                        </p>
+                    </div>
+                </ng-container>
             </div>
             <div>
                 <label for="fin">Fin</label>
-                <input 
-                    type="date" 
-                    name="fin"
-                    id="fin"
-                    [(ngModel)]="periodo.fin"
-                    [value]="periodo.fin"
-                >
+                <ng-container formGroupName="periodo"> 
+                    <input 
+                        type="date" 
+                        name="fin"
+                        formControlName="fin"
+                    >
+                    <div *ngIf="Fin?.errors && Fin?.touched" class="error">
+                        <p *ngIf="Fin?.hasError('required')">
+                            El periodo de fin es requerido
+                        </p>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>
@@ -79,9 +93,13 @@
                 (click)="fileUpload.click()">
                 <i class='bx bx-folder-plus'></i>
             </button>
-            {{this.img.titulo || "No file uploaded yet."}}
+            {{this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+        </div>
+        <div *ngIf="Img?.errors && Img?.touched" class="error">
+            <p *ngIf="Img?.hasError('required')">
+                Una imagen es requerida
+            </p>
         </div>
     </div>
-    <input *ngIf="!showEdit" class="button-green" type="submit" value="Agregar" (click)="add()">
-    <input *ngIf="showEdit" class="button-green" type="submit" value="Editar" (click)="edit()">
+    <input class="button-green" type="submit" [value]="experience.id != null ? 'Editar' : 'Agregar'" (click)="experience.id != null ? onEdit() : onAdd()">
 </form>

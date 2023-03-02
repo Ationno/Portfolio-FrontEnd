@@ -13,9 +13,9 @@ import { UiService } from 'src/app/service/ui.service';
 
 export class EducationComponent {
 	educations : Education[] = [];
+	education: Education = {titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
 	subscription?: Subscription;
 	editar: boolean = false;
-	educationEdit: Education = {id: 0, titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
 
 	constructor(
 		private educationService: EducationService,
@@ -28,10 +28,9 @@ export class EducationComponent {
 		})
 	}
 	
-	public toggleAddEducation() {
-		this.educationEdit = {id: 0, titulo: "", institucion: "", periodo: {inicio:"", fin:""}, img: {titulo: "", tipo: "", base64:""}};
-		this.uiService.toggleEdit(false);
-		this.uiService.toggleAddEducation();
+	public toggleFormEducation() {
+		this.uiService.toggleFormEducation();
+		this.education = {titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
 	}
 
 	public deleteEducation(education: Education) {
@@ -53,9 +52,7 @@ export class EducationComponent {
 		});
 	}
 
-	public editToFormEducation(education: Education) {
-		this.educationEdit = education;
+	public editFormEducation(education: Education) {
+		this.education = education;
 	}
-	
-
 }

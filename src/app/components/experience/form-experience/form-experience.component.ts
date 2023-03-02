@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Experience } from 'src/app/Interfaces/Experience';
 import { UiService } from 'src/app/service/ui.service';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-form-experience',
@@ -11,100 +12,120 @@ import { UiService } from 'src/app/service/ui.service';
 export class FormExperienceComponent {
 	@Output() onAddExperience: EventEmitter<Experience> = new EventEmitter();
 	@Output() onEditExperience: EventEmitter<Experience> = new EventEmitter();
-	@Output() toggleAddExperience: EventEmitter<Event> = new EventEmitter();
-	@Input() titulo: string = "";
-	@Input() empresa: string = "";
-	@Input() aprendizajes: string[] = [];
-	@Input() periodo: {inicio: string, fin: string} = {inicio:"", fin:""};
-	@Input() img: {titulo: string, tipo: string, base64?: string} = {titulo: "", tipo: "", base64: ""};
-	@Input() id?: number = 0;
-	aprendizaje: string = "";
-	showAddExperience: boolean = false;
-	showEdit: boolean = false;
-	subscriptionAdd?: Subscription;
-	subscriptionEdit?: Subscription;
+	@Output() onToggleFormExperience: EventEmitter<Event> = new EventEmitter();
+	@Input() experience: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
+	aprendizajes: string[] = [];
+	showFormExperience: boolean = false;
+	subscription?: Subscription;
+	form: FormGroup;
 
 	constructor(
-		private uiService: UiService
+		private uiService: UiService,
+		private formBuilder: FormBuilder
 	) {
-		this.subscriptionAdd = this.uiService.onToggleAddExperience().subscribe( value => this.showAddExperience = value );
-		this.subscriptionEdit = this.uiService.onToggleEdit().subscribe( value => this.showEdit = value );
+		this.subscription = this.uiService.onToggleFormExperience().subscribe( value => this.showFormExperience = value );
+		this.form = this.formBuilder.group({
+			id: [],
+			titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			empresa: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			periodo: this.formBuilder.group({
+				inicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+				fin: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
+			}),
+			aprendizaje: new FormControl(""),
+			aprendizajes: new FormControl([]),
+			img: this.formBuilder.group({
+				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+				tipo: new FormControl('', {updateOn: 'blur'}),
+				base64: new FormControl('', {updateOn: 'blur'})
+			})
+		})
 	}
-	
-	private securityExperience(): boolean {
-		if (!this.titulo) {
-			alert("Agregar titulo")
-			return false
-		} else if (!this.empresa) {
-			alert("Agregar empresa")
-			return false
-		} else if (this.aprendizajes.length == 0) {
-			alert("Colocar al menos un aprendizaje")
-			return false
-		} else if (!this.img) {
-			alert("Agregar Imagen")
-			return false
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes['experience']?.currentValue)  {
+			this.form?.patchValue(this.experience);
+			this.aprendizajes = Object.assign([], this.form.get("aprendizajes")?.value);
+			this.form.get("aprendizaje")?.setValue("")
 		}
-		return true
 	}
 
-	private resetVariables():void {
-		this.titulo = ""
-		this.empresa = ""
-		this.aprendizajes = []
-		this.periodo = {inicio:"", fin:""}
-		this.img = {titulo: "", tipo: "", base64: ""}
-		this.aprendizaje = ""
+	get Titulo(){
+		return this.form.get("titulo");
 	}
 
-	public add(): void {
-		const {titulo, empresa, aprendizajes, periodo, img} = this
-		const newExperience = {titulo, empresa, aprendizajes, periodo, img}
-		if (this.securityExperience()) {
-			this.onAddExperience.emit(newExperience);
-			this.toggleAddExperience.emit();
-			this.resetVariables();
-		} else
-			return
+	get Empresa(){
+		return this.form.get("empresa");
+	}
+		
+	get Inicio(){
+		return this.form.get("periodo")?.get("inicio");	
 	}
 
-	public edit(): void {
-		const {titulo, empresa, aprendizajes, periodo, img, id} = this
-		const newExperience = {titulo, empresa, aprendizajes, periodo, img, id}
-		if (this.securityExperience()) {
-			this.onEditExperience.emit(newExperience);
-			this.toggleAddExperience.emit();
-			this.resetVariables();
-		} else
-			return
+	get Fin(){
+		return this.form.get("periodo")?.get("fin");	
 	}
 
-	public cerrar(): void {
-		this.toggleAddExperience.emit();
-		this.resetVariables();
+	get Img(){
+		return this.form.get("img")?.get("titulo");	
 	}
 
-	public agregarAprendizaje(): void {
+	public onClose(): void {
+		this.onToggleFormExperience.emit();
+		this.form.reset();
+	}
+
+	public onAddAprendizaje(): void {
 		if (this.aprendizajes.length<10) {
-			this.aprendizajes.push(this.aprendizaje)
-			this.aprendizaje = ""
+			this.aprendizajes.push(this.form.get("aprendizaje")?.value)
+			this.form.get("aprendizajes")?.setValue(Object.assign([], this.aprendizajes))
+			this.form.get("aprendizaje")?.setValue("")
 		}
 	}
 
-	public eliminarAprendizaje(aprendizaje: string): void {
-		this.aprendizajes = this.aprendizajes.filter( ele => ele !== aprendizaje )
+	public onDeleteAprendizaje(aprendizaje: string): void {
+		this.aprendizajes = this.aprendizajes.filter( ele => ele != aprendizaje)
+		this.form.get("aprendizajes")?.setValue(Object.assign([], this.aprendizajes))
 	}
 
 	public onFileSelected(event: any) {
-				const file:File = event.target.files[0];
+		const file:File = event.target.files[0];
 		const reader = new FileReader;
-				if (file) {
+		if (file) {
 			reader.readAsDataURL(file);
 				reader.onload = () => {
-				this.img.base64 = reader.result?.toString().split(',')[1];
+					this.form.patchValue({
+						img: {
+							titulo: file.name,
+							tipo: file.type.split('/')[1],
+							base64: reader.result?.toString().split(',')[1]
+						}
+					})
 				};
-			this.img.titulo = file.name;
-			this.img.tipo = file.type.split('/')[1];
-				}
 		}
+	}
+
+	public onAdd(): void {
+		if (this.form.valid) {
+			this.onAddExperience.emit(this.form.getRawValue());
+			this.onToggleFormExperience.emit();
+			this.form.reset()
+			alert("Success!")
+		} else {
+			console.log(this.form.errors)
+			this.form.markAllAsTouched();
+		}
+	}
+
+	public onEdit(): void {
+		if (this.form.valid) {
+			this.onEditExperience.emit(this.form.getRawValue());
+			this.onToggleFormExperience.emit();
+			this.form.reset()
+			alert("Success!")
+		} else {
+			console.log(this.form.errors)
+			this.form.markAllAsTouched();
+		}
+	}
 }

@@ -6,10 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
- 	elementos : number[] = [
-    	1,
-    	2,
-    	3
-  	]
   	title = 'Portfolio-FrontEnd';
 }

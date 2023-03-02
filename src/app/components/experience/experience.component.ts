@@ -1,4 +1,4 @@
-import { Component, Renderer2 ,RendererFactory2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Experience } from 'src/app/Interfaces/Experience';
 import { ExperienceService } from 'src/app/service/experience.service';
@@ -13,19 +13,14 @@ export class ExperienceComponent {
 	experiences : Experience[] = [];
 	noExperience: boolean = false;
 	subscription?: Subscription;
-	editar: boolean = false;
-	experienceEdit: Experience = {id: 0, titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
-	experienceChosen: Experience = {id: 0, titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
+	experienceEdit: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
+	experienceChosen: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
 	clicked: boolean = false;
-	private renderer: Renderer2;
 
 	constructor(
 		private experienceService: ExperienceService,
-		private uiService: UiService,
-		private rendererFactory: RendererFactory2
-	) {
-		this.renderer = rendererFactory.createRenderer(null, null)
-	}
+		private uiService: UiService
+	) {}
 
 	ngOnInit() {
 		this.experienceService.get().subscribe((experiences) => {	
@@ -34,7 +29,7 @@ export class ExperienceComponent {
 				this.experienceChosen = experiences[0]
 				this.noExperience = false;
 			} else {
-				this.experienceChosen = {id: 0, titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
+				this.experienceChosen = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
 				this.noExperience = true;
 			}
 		})
@@ -42,17 +37,11 @@ export class ExperienceComponent {
 
 	public choseExperience(empresa: string): void {
 		this.experienceChosen = this.experiences.filter( ele => ele.empresa === empresa )[0];
-		this.renderer.addClass(document.getElementsByClassName(empresa)[0], "clicked");
-		this.experiences.forEach((elem) => {
-			if (elem.empresa !== empresa)
-			this.renderer.removeClass(document.getElementsByClassName(elem.empresa)[0], "clicked");
-		})
 	}
 	
-	public toggleAddExperience() {
-		this.experienceEdit = {id: 0, titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
-		this.uiService.toggleEdit(false);
-		this.uiService.toggleAddExperience();
+	public toggleFormExperience() {
+		this.uiService.toggleFormExperience();
+		this.experienceEdit = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
 	}
 
 	public deleteExperience(experience: Experience) {
@@ -82,7 +71,7 @@ export class ExperienceComponent {
 		});
 	}
 
-	public editToFormExperience(experience: Experience) {
+	public editFormExperience(experience: Experience) {
 		this.experienceEdit = experience;
 	}
 }

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/Interfaces/Project';
 import { UiService } from 'src/app/service/ui.service';
@@ -11,103 +12,118 @@ import { UiService } from 'src/app/service/ui.service';
 export class FormProjectComponent {
 	@Output() onAddProject: EventEmitter<Project> = new EventEmitter();
 	@Output() onEditProject: EventEmitter<Project> = new EventEmitter();
-	@Output() toggleAddProject: EventEmitter<Event> = new EventEmitter();
-	@Input() titulo: string = "";
-	@Input() parrafo: string = "";
-	@Input() lenguajes: string[] = [];
-	@Input() linkGit: string = "";
-	@Input() linkPag: string = "";
-	@Input() img: {titulo: string, tipo: string, base64?: string} = {titulo: "", tipo: "", base64: ""};
-	@Input() id?: number = 0;
-	lenguaje: string = "";
-	showAddProject: boolean = false;
-	showEdit: boolean = false;
-	subscriptionAdd?: Subscription;
-	subscriptionEdit?: Subscription;
+	@Output() onToggleFormProject: EventEmitter<Event> = new EventEmitter();
+	@Input() project: Project = {titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+	lenguajes: string[] = [];
+	showFormProject: boolean = false;
+	subscription?: Subscription;
+	form: FormGroup;
 
 	constructor(
-		private uiService: UiService
+		private uiService: UiService,
+		private formBuilder: FormBuilder
 	) {
-		this.subscriptionAdd = this.uiService.onToggleAddProject().subscribe( value => this.showAddProject = value );
-		this.subscriptionEdit = this.uiService.onToggleEdit().subscribe( value => this.showEdit = value );
+		this.subscription = this.uiService.onToggleFormProject().subscribe( value => this.showFormProject = value );
+		this.form = this.formBuilder.group({
+			id: [],
+			titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			parrafo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			linkGit: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			linkPag: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			lenguaje: new FormControl(""),
+			lenguajes: new FormControl([]),
+			img: this.formBuilder.group({
+				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+				tipo: new FormControl('', {updateOn: 'blur'}),
+				base64: new FormControl('', {updateOn: 'blur'})
+			})
+		})
 	}
-	
-	private securityProject(): boolean {
-		if (!this.titulo) {
-			alert("Agregar titulo")
-			return false
-		} else if (!this.parrafo) {
-			alert("Agregar parrafo")
-			return false
-		} else if (this.lenguajes.length == 0) {
-			alert("Colocar al menos un lenguaje")
-			return false
-		} else if (!this.linkGit) {
-			alert("Agregar link GitHub del proyecto")
-		} else if (!this.img) {
-			alert("Agregar Imagen")
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes['project']?.currentValue)  {
+			this.form?.patchValue(this.project);
+			this.lenguajes = Object.assign([], this.form.get("lenguajes")?.value);
+			this.form.get("lenguaje")?.setValue("")
 		}
-		return true
 	}
 
-	private resetVariables():void {
-		this.titulo = ""
-		this.parrafo = ""
-		this.lenguajes = []
-		this.linkGit = ""
-		this.linkPag = ""
-		this.img = {titulo: "", tipo: "", base64: ""}
-		this.lenguaje = ""
+	get Titulo(){
+		return this.form.get("titulo");
 	}
 
-	public add(): void {
-		const {titulo, parrafo, lenguajes, linkGit, linkPag, img} = this
-		const newProject = {titulo, parrafo, lenguajes, linkGit, linkPag, img}
-		if (this.securityProject()) {
-			this.onAddProject.emit(newProject);
-			this.toggleAddProject.emit();
-			this.resetVariables();
-		} else
-			return
+	get Parrafo(){
+		return this.form.get("parrafo");
+	}
+		
+	get LinkGit(){
+		return this.form.get("linkGit");
 	}
 
-	public edit(): void {
-		const {titulo, parrafo, lenguajes, linkGit, linkPag, img, id} = this
-		const newProject = {titulo, parrafo, lenguajes, linkGit, linkPag, img, id}
-		if (this.securityProject()) {
-			this.onEditProject.emit(newProject);
-			this.toggleAddProject.emit();
-			this.resetVariables();
-		} else
-			return
+	get LinkPag(){
+		return this.form.get("linkPag");
 	}
 
-	public cerrar(): void {
-		this.toggleAddProject.emit();
-		this.resetVariables();
+	get Img(){
+		return this.form.get("img")?.get("titulo");	
 	}
 
-	public agregarLenguaje(): void {
+	public onClose(): void {
+		this.onToggleFormProject.emit();
+		this.form.reset();
+	}
+
+	public onAddLenguaje(): void {
 		if (this.lenguajes.length<10) {
-			this.lenguajes.push(this.lenguaje)
-			this.lenguaje = ""
+			this.lenguajes.push(this.form.get("lenguaje")?.value)
+			this.form.get("lenguajes")?.setValue(Object.assign([], this.lenguajes))
+			this.form.get("lenguaje")?.setValue("")
 		}
 	}
 
-	public eliminarLenguaje(lenguaje: string): void {
-		this.lenguajes = this.lenguajes.filter( ele => ele !== lenguaje )
+	public onDeleteLenguaje(lenguaje: string): void {
+		this.lenguajes = this.lenguajes.filter( ele => ele != lenguaje)
+		this.form.get("lenguajes")?.setValue(Object.assign([], this.lenguajes))
 	}
 
 	public onFileSelected(event: any) {
-        const file:File = event.target.files[0];
+		const file:File = event.target.files[0];
 		const reader = new FileReader;
-        if (file) {
+		if (file) {
 			reader.readAsDataURL(file);
-    		reader.onload = () => {
-				this.img.base64 = reader.result?.toString().split(',')[1];
-    		};
-			this.img.titulo = file.name;
-			this.img.tipo = file.type.split('/')[1];
-        }
-    }
+				reader.onload = () => {
+					this.form.patchValue({
+						img: {
+							titulo: file.name,
+							tipo: file.type.split('/')[1],
+							base64: reader.result?.toString().split(',')[1]
+						}
+					})
+				};
+		}
+	}
+
+	public onAdd(): void {
+		if (this.form.valid) {
+			this.onAddProject.emit(this.form.getRawValue());
+			this.onToggleFormProject.emit();
+			this.form.reset()
+			alert("Success!")
+		} else {
+			console.log(this.form.errors)
+			this.form.markAllAsTouched();
+		}
+	}
+
+	public onEdit(): void {
+		if (this.form.valid) {
+			this.onEditProject.emit(this.form.getRawValue());
+			this.onToggleFormProject.emit();
+			this.form.reset()
+			alert("Success!")
+		} else {
+			console.log(this.form.errors)
+			this.form.markAllAsTouched();
+		}
+	}
 }

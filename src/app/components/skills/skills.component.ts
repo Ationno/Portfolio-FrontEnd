@@ -15,7 +15,7 @@ export class SkillsComponent {
 	skillsHard : Skill[] = [];
 	subscription?: Subscription;
 	editar: boolean = false;
-	skillEdit: Skill = {id: 0, titulo: "", parrafo: "", porcentaje: 0, eleccion: ""};
+	skill: Skill = {titulo: "", parrafo: "", porcentaje: 0, eleccion: ""};
 
     constructor(
 		private skillService: SkillService,
@@ -28,10 +28,9 @@ export class SkillsComponent {
 		})
 	}
 	
-	public toggleAddSkill() {
-		this.skillEdit = {id: 0, titulo: "", parrafo: "", porcentaje: 0, eleccion: ""};
-		this.uiService.toggleEdit(false);
-		this.uiService.toggleAddSkill();
+	public toggleFormSkill() {
+		this.skill = {titulo: "", parrafo: "", porcentaje: 0, eleccion: ""};
+		this.uiService.toggleFormSkill();
 	}
 
 	public deleteSkill(skill: Skill) {
@@ -61,8 +60,8 @@ export class SkillsComponent {
 		return this.skills.filter(elem => elem.eleccion === "Hard");
 	}
 
-	public editToFormSkill(skill: Skill) {
-		this.skillEdit = skill;
+	public editFormSkill(skill: Skill) {
+		this.skill = skill;
 	}
 	
 

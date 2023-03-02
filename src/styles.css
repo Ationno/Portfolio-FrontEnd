@@ -109,3 +109,11 @@ Linea y titulo de cada seccion
     background-color: #d1d1d1;
 }
 
+.error {
+    margin-top: .25em;
+    padding: .25em 0;
+}
+
+.error p {
+    color: red;
+}

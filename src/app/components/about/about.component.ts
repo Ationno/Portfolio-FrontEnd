@@ -18,7 +18,7 @@ export class AboutComponent {
 	constructor(
 		private aboutService: AboutService,
 		private uiService: UiService,
-		private sanitizer: DomSanitizer
+		public sanitizer: DomSanitizer
 	) {}
 
 	ngOnInit() {
@@ -28,13 +28,14 @@ export class AboutComponent {
 		})
 	}
 
-	public onEdit() {
-		this.uiService.toggleEditAbout();
+	public toggleFormAbout() {
+		this.uiService.toggleFormAbout();
 	}
 
 	public editAbout(about: About) {
 		this.aboutService.edit(about).subscribe(() => {
 			this.about = about;
+			this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.about.img.base64}`);
 		})
 	}
 }

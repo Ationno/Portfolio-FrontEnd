@@ -31,7 +31,6 @@ export class ProjectElementComponent {
 
 	public onEdit(project:Project) {
 		this.onEditFormProject.emit(project);
-		this.uiService.toggleEdit(true);
-		this.uiService.toggleAddProject();
+		this.uiService.toggleFormProject();
 	}
 }

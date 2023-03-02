@@ -2,24 +2,20 @@
     <div class="titulo">
         <h2>03. Educacion</h2>
         <div class="linea"></div>
-        <i class='bx bx-plus' (click)="toggleAddEducation()"></i>
+        <i class='bx bx-plus' (click)="toggleFormEducation()"></i>
     </div>
     <app-form-education
         (onAddEducation)="addEducation($event)"
         (onEditEducation)="editEducation($event)"
-        (toggleAddEducation)="toggleAddEducation()"
-        [titulo] = "educationEdit.titulo"
-        [institucion] = "educationEdit.institucion"
-        [periodo] = "educationEdit.periodo"
-        [img]="educationEdit.img"
-        [id] = "educationEdit.id"
+        (onToggleFormEducation)="toggleFormEducation()"
+        [education]="education"
     >
     </app-form-education>
     <ul class="lista_educacion">
         <app-education-element *ngFor="let education of educations"
             [education] = "education"
             (onDeleteEducation)="deleteEducation(education)"
-            (onEditFormEducation)="editToFormEducation(education)"
+            (onEditEducation)="editFormEducation(education)"
         >
         </app-education-element>
     </ul>

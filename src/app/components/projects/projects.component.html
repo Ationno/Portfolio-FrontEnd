@@ -2,19 +2,13 @@
     <div class="titulo">
         <h2>05. Proyectos</h2>
         <div class="linea"></div>
-        <i class='bx bx-plus' (click)="toggleAddProject()"></i>
+        <i class='bx bx-plus' (click)="toggleFormProject()"></i>
     </div>
     <app-form-project
         (onAddProject)="addProject($event)"
         (onEditProject)="editProject($event)"
-        (toggleAddProject)="toggleAddProject()"
-        [titulo] = "projectEdit.titulo"
-        [parrafo] = "projectEdit.parrafo"
-        [lenguajes]= "projectEdit.lenguajes"
-        [linkGit]="projectEdit.linkGit"
-        [linkPag]="projectEdit.linkPag"
-        [img]="projectEdit.img"
-        [id] = "projectEdit.id"
+        (onToggleFormProject)="toggleFormProject()"
+        [project]="project"
     >
     </app-form-project>
     <div class="lista_proyectos">
@@ -23,8 +17,8 @@
             [project] = "project"
             [ngClass]="{'impar': i%2==1}"
             [i] = "i"
-            (onDeleteProject)="deleteProject(project)"
-            (onEditFormProject)="editToFormProject(project)"
+            (onDeleteProject)="deleteProject($event)"
+            (onEditFormProject)="editFormProject($event)"
         ></app-project-element>
     </div>   
 </section>

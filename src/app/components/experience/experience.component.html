@@ -2,27 +2,22 @@
     <div class="titulo">
         <h2>02. Experiencia</h2>
         <div class="linea"></div>
-        <i class='bx bx-plus' (click)="toggleAddExperience()"></i>
+        <i class='bx bx-plus' (click)="toggleFormExperience()"></i>
     </div>
     <app-form-experience
         (onAddExperience)="addExperience($event)"
         (onEditExperience)="editExperience($event)"
-        (toggleAddExperience)="toggleAddExperience()"
-        [titulo] = "experienceEdit.titulo"
-        [empresa] = "experienceEdit.empresa"
-        [periodo] = "experienceEdit.periodo"
-        [aprendizajes]= "experienceEdit.aprendizajes"
-        [img] = "experienceEdit.img"
-        [id] = "experienceEdit.id"
+        (onToggleFormExperience)="toggleFormExperience()"
+        [experience]="experienceEdit"
     ></app-form-experience>
     <div class="contenido">
         <ul class="lista_trabajos">
-            <li *ngFor="let elem of experiences" [ngClass]="elem.empresa" (click)="choseExperience(elem.empresa)">{{elem.empresa}}</li>
+            <li *ngFor="let elem of experiences; first as isFirst" [ngClass]="{'clicked': elem.empresa == this.experienceChosen.empresa}" (click)="choseExperience(elem.empresa)">{{elem.empresa}}</li>
         </ul>
         <app-experience-element *ngIf="!this.noExperience"
             [experience] = "experienceChosen"
-            (onDeleteExperience)="deleteExperience(experienceChosen)"
-            (onEditFormExperience)="editToFormExperience(experienceChosen)"
+            (onDeleteExperience)="deleteExperience($event)"
+            (onEditExperience)="editFormExperience($event)"
         ></app-experience-element>
     </div>
 </section>

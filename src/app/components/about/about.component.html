@@ -3,16 +3,14 @@
         <div class="titulo">
             <h2>01. Acerca de</h2>
             <div class="linea"></div>
-            <i class='bx bx-edit editar'  (click)="onEdit()"></i>
+            <i class='bx bx-edit editar'  (click)="toggleFormAbout()"></i>
         </div>
         <p>{{this.about.parrafo}}</p>
     </div>
     <app-form-about
-        (onEditAbout)="editAbout($event)"
-        (toggleEditAbout)="onEdit()"
-        [parrafo] = "about.parrafo"
-        [img]="about.img"
-        [id] = "about.id"
+        (onSubmitAbout)="editAbout($event)"
+        (onToggleFormAbout)="toggleFormAbout()"
+        [about] = "about"
     >   
     </app-form-about>
     <div class="imagen">

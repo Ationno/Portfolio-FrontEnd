@@ -1,31 +1,37 @@
 <form 
-    *ngIf="showAddProject"
+    *ngIf="showFormProject" [formGroup]="form"
 >
-    <i class='bx bx-x cerrar' (click)="cerrar()"></i>
-    <h1>{{showEdit ? 'Editar' : 'Agregar'}} Proyecto</h1> 
+    <i class='bx bx-x cerrar' (click)="onClose()"></i>
+    <h1>{{project.id != null ? 'Editar' : 'Agregar'}} Proyecto</h1> 
     <div class="form-control">
         <label for="titulo">Titulo de Proyecto</label>
         <input 
             type="text" 
             name="titulo" 
-            id="titulo" 
             placeholder="Agregar titulo"
-            [(ngModel)]="titulo"
-            [value] = "titulo"
+            formControlName="titulo"
         >
+        <div *ngIf="Titulo?.errors && Titulo?.touched" class="error">
+            <p *ngIf="Titulo?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="parrafo">Parrafo de explicacion</label>
         <textarea 
             type="text"  
             name="parrafo" 
-            id="parrafo" 
-            placeholder="Agregar parrafo"
-            [(ngModel)]="parrafo"  
-            [value] = "parrafo"  
+            placeholder="Agregar parrafo"  
             cols="40" rows="5"
             maxlength="260"
+            formControlName="parrafo"
         ></textarea>
+        <div *ngIf="Parrafo?.errors && Parrafo?.touched" class="error">
+            <p *ngIf="Parrafo?.hasError('required')">
+                El parrafo es requerido
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="lenguaje">Lenguajes</label>
@@ -35,16 +41,15 @@
                 name="lenguaje" 
                 id="lenguaje" 
                 placeholder="Agregar lenguaje"
-                [(ngModel)]="lenguaje"
-                [value]="lenguaje"
-                (keydown.enter)="agregarLenguaje()"
+                (keydown.enter)="onAddLenguaje()"
+                formControlName="lenguaje"
             >
             <button>
-                <i class='bx bx-plus agregar_lenguaje' (click)="agregarLenguaje()"></i>
+                <i class='bx bx-plus agregar_lenguaje' (click)="onAddLenguaje()"></i>
             </button>
         </div>
         <ul class="lenguajes_elegidos">
-            <li *ngFor="let lenguaje of lenguajes">{{lenguaje}} <i class='bx bx-x' (click)="eliminarLenguaje(lenguaje)"></i></li> 
+            <li *ngFor="let lenguaje of lenguajes">{{lenguaje}} <i class='bx bx-x' (click)="onDeleteLenguaje(lenguaje)"></i></li> 
         </ul>
     </div>
     <div class="form-control">
@@ -54,9 +59,13 @@
             name="linkGit" 
             id="linkGit" 
             placeholder="Agregar link de GitHub"
-            [(ngModel)]="linkGit"
-            [value]="linkGit"
+            formControlName="linkGit"
         >
+        <div *ngIf="LinkGit?.errors && LinkGit?.touched" class="error">
+            <p *ngIf="LinkGit?.hasError('required')">
+                El link de Github del proyecto es requerido
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="linkPag">Sitio</label>
@@ -65,9 +74,13 @@
             name="linkPag" 
             id="linkPag" 
             placeholder="Agregar link del Sitio"
-            [(ngModel)]="linkPag"
-            [value]="linkPag"
+            formControlName="linkPag"
         >
+        <div *ngIf="LinkPag?.errors && LinkPag?.touched" class="error">
+            <p *ngIf="LinkPag?.hasError('required')">
+                El link de la página es requerido
+            </p>
+        </div>
     </div>
     <div class="form-control">
         <label for="img">Imagen</label>
@@ -78,9 +91,13 @@
                 (click)="fileUpload.click()">
                 <i class='bx bx-folder-plus'></i>
             </button>
-            {{this.img.titulo || "No file uploaded yet."}}
+            {{this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+        </div>
+        <div *ngIf="Img?.errors && Img?.touched" class="error">
+            <p *ngIf="Img?.hasError('required')">
+                Una imagen es requerida
+            </p>
         </div>
     </div>
-    <input *ngIf="!showEdit" class="button-green" type="submit" value="Agregar" (click)="add()">
-    <input *ngIf="showEdit" class="button-green" type="submit" value="Editar" (click)="edit()">
+    <input class="button-green" type="submit" [value]="project.id != null ? 'Editar' : 'Agregar'" (click)="project.id != null ? onEdit() : onAdd()">
 </form>
