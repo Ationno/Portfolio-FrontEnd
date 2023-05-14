@@ -3,7 +3,7 @@
         <div class="titulo">
             <h2>01. Acerca de</h2>
             <div class="linea"></div>
-            <i class='bx bx-edit editar'  (click)="toggleFormAbout()"></i>
+            <i *ngIf="this.isLogged" class='bx bx-edit editar'  (click)="toggleFormAbout()"></i>
         </div>
         <p>{{this.about.parrafo}}</p>
     </div>

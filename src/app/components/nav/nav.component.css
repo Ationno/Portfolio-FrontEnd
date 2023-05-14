@@ -9,6 +9,7 @@
     font-size: 24px;
     font-family: 'Mulish', sans-serif;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .barra_navegacion .yoprogramo {
@@ -30,3 +31,4 @@
 .barra_navegacion :last-child {
     margin-right: 0;
 }
+

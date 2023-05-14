@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Experience } from 'src/app/Interfaces/Experience';
 import { ExperienceService } from 'src/app/service/experience.service';
+import { TokenService } from 'src/app/service/token.service';
 import { UiService } from 'src/app/service/ui.service';
 
 @Component({
@@ -16,10 +17,12 @@ export class ExperienceComponent {
 	experienceEdit: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
 	experienceChosen: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
 	clicked: boolean = false;
+	isLogged = false;
 
 	constructor(
 		private experienceService: ExperienceService,
-		private uiService: UiService
+		private uiService: UiService,
+		private tokenService: TokenService
 	) {}
 
 	ngOnInit() {
@@ -33,6 +36,7 @@ export class ExperienceComponent {
 				this.noExperience = true;
 			}
 		})
+		this.isLogged = this.tokenService.getToken() != null;
 	}
 
 	public choseExperience(empresa: string): void {

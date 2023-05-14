@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Education } from 'src/app/Interfaces/Education';
+import { TokenService } from 'src/app/service/token.service';
 import { UiService } from 'src/app/service/ui.service';
 
 @Component({
@@ -15,16 +16,19 @@ export class EducationElementComponent {
 	inicio: Date = new Date();
 	fin: Date = new Date();
 	imageSource: any;
+	isLogged = false;
 
 	constructor( 
 		private uiService: UiService,
-		private sanitizer: DomSanitizer
+		private sanitizer: DomSanitizer,
+		private tokenService: TokenService
 	) {}
 
 	ngOnInit() : void {
 		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.education.img.base64}`);
 		this.inicio = new Date(this.education.periodo.inicio);
 		this.fin = new Date(this.education.periodo.fin);
+		this.isLogged = this.tokenService.getToken() != null;
 	}
 
 	public onDelete(education: Education) {

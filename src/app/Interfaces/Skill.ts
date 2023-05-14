@@ -3,5 +3,5 @@ export interface Skill {
     titulo:string;
     parrafo:string;
     porcentaje:number;
-    eleccion: string;
+    tipo: number;
 }

@@ -3,9 +3,9 @@
     <div class="contenido">
         <h3> <strong>{{project.titulo}}</strong> 
             <i class='bx bx-edit editar' 
-                (click)="onEdit(project)"></i>
+                *ngIf="this.isLogged" (click)="onEdit(project)"></i>
             <i class='bx bx-x borrar'
-                (click)="onDelete(project)"></i> 
+                *ngIf="this.isLogged" (click)="onDelete(project)"></i> 
         </h3>
         <p>{{project.parrafo}}</p>
         <ul class="lista_lenguajes">

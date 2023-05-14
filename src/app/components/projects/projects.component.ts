@@ -3,6 +3,7 @@ import { ProjectService } from '../../service/project.service';
 import { Project } from '../../Interfaces/Project';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/service/ui.service';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
 	selector: 'app-projects',
@@ -14,16 +15,19 @@ export class ProjectsComponent {
 	projects : Project[] = [];
 	subscription?: Subscription;
 	project: Project = {titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+	isLogged = false;
 
     constructor(
 		private projectService: ProjectService,
 		private uiService: UiService,
+		private tokenService: TokenService
 	) {}
 
 	ngOnInit() {
 		this.projectService.get().subscribe((projects) => {	
 			this.projects = projects
 		})
+		this.isLogged = this.tokenService.getToken() != null;
 	}
 	
 	public toggleFormProject() {

@@ -29,7 +29,7 @@
         ></textarea>
         <div *ngIf="Parrafo?.errors && Parrafo?.touched" class="error">
             <p *ngIf="Parrafo?.hasError('required')">
-                El titulo es requerido
+                El parrafo es requerido
             </p>
         </div>
     </div>
@@ -44,15 +44,21 @@
         >
         <div *ngIf="Porcentaje?.errors && Porcentaje?.touched" class="error">
             <p *ngIf="Porcentaje?.hasError('required')">
-                El titulo es requerido
+                El porcentaje es requerido
+            </p>
+            <p *ngIf="Porcentaje?.hasError('min')">
+                El numero de porcentaje <br> es menor al permitido
+            </p>
+            <p *ngIf="Porcentaje?.hasError('max')">
+                El numero de porcentaje <br> es mayor al permitido
             </p>
         </div>
     </div>
     <div class="form-control" *ngIf="skill.id == null">
-        <label for="eleccion">Tipo de habilidad</label>
-        <select name="eleccion" formControlName="eleccion">
-            <option [selected]="true" value="Soft">Soft Skill</option>
-            <option value="Hard">Hard Skill</option>
+        <label for="tipo">Tipo de habilidad</label>
+        <select name="tipo" formControlName="tipo">
+            <option [selected]="true" [value]="1">Soft Skill</option>
+            <option [value]="0">Hard Skill</option>
         </select>
     </div>
     <input class="button-green" type="submit" [value]="skill.id != null ? 'Editar' : 'Agregar'" (click)="skill.id != null ? onEdit() : onAdd()">

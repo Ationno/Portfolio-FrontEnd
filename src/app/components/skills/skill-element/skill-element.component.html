@@ -17,9 +17,9 @@
         <div class="titulo">
             <h4>{{skill.titulo}}</h4>
             <i class='bx bx-edit editar'
-                (click)="onEdit(skill)"></i>
+                *ngIf="this.isLogged" (click)="onEdit(skill)"></i>
             <i class='bx bx-x borrar'
-                (click)="onDelete(skill)"
+                *ngIf="this.isLogged" (click)="onDelete(skill)"
             ></i> 
         </div>
         <p>{{skill.parrafo}}</p>

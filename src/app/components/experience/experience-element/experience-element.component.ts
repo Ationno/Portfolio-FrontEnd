@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Experience } from 'src/app/Interfaces/Experience';
+import { TokenService } from 'src/app/service/token.service';
 import { UiService } from 'src/app/service/ui.service';
 
 @Component({
@@ -15,11 +16,17 @@ export class ExperienceElementComponent {
 	imageSource: any;
 	inicio: Date = new Date();
 	fin: Date = new Date();
+	isLogged = false;
 
 	constructor( 
 		private uiService: UiService,
-		public sanitizer: DomSanitizer
+		public sanitizer: DomSanitizer,
+		private tokenService: TokenService
 	) {}
+
+	ngOnInit() {
+		this.isLogged = this.tokenService.getToken() != null;
+	}
 
 	ngOnChanges() : void {
 		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.experience.img.base64}`);

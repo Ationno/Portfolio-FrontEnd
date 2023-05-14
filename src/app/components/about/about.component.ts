@@ -4,6 +4,7 @@ import { About } from 'src/app/Interfaces/About';
 import { AboutService } from 'src/app/service/about.service';
 import { UiService } from 'src/app/service/ui.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
 	selector: 'app-about',
@@ -14,11 +15,13 @@ export class AboutComponent {
 	public about: About = {id: 0, parrafo: "", img: {titulo: "", tipo: "", base64: ""}};
 	subscription?: Subscription;
 	imageSource: any;
+	isLogged = false;
 	
 	constructor(
 		private aboutService: AboutService,
 		private uiService: UiService,
-		public sanitizer: DomSanitizer
+		public sanitizer: DomSanitizer,
+		private tokenService: TokenService
 	) {}
 
 	ngOnInit() {
@@ -26,6 +29,7 @@ export class AboutComponent {
 			this.about = abouts[0]
 			this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.about.img.base64}`);
 		})
+		this.isLogged = this.tokenService.getToken() != null;
 	}
 
 	public toggleFormAbout() {
