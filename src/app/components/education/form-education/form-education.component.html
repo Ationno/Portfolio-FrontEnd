@@ -18,69 +18,69 @@
         </div>
     </div>
     <div class="form-control">
-        <label for="institucion">Institución</label>
-        <input 
-            type="text"  
-            name="institucion" 
-            placeholder="Agregar institucion"
-            formControlName="institucion" 
-        >
-        <div *ngIf="Institucion?.errors && Institucion?.touched" class="error">
-            <p *ngIf="Institucion?.hasError('required')">
-                La institucion es requerida
-            </p>
-        </div>
+        <ng-container formGroupName="institucion">
+            <label for="nombre">Institución</label>
+            <input 
+                type="text"  
+                name="nombre" 
+                placeholder="Agregar institucion"
+                formControlName="nombre" 
+            >
+            <div *ngIf="Institucion?.errors && Institucion?.touched" class="error">
+                <p *ngIf="Institucion?.hasError('required')">
+                    La institucion es requerida
+                </p>
+            </div>
+        </ng-container>
     </div>
     <div class="form-control periodo">
         <h3>Periodo de aprendizaje</h3>
         <div style="display: flex; justify-content: space-around;">
             <div>
-                <label for="inicio">Inicio</label>
-                <ng-container formGroupName="periodo"> 
-                    <input 
-                        type="date" 
-                        name="inicio"
-                        formControlName="inicio"
-                    >
-                    <div *ngIf="Inicio?.errors && Inicio?.touched" class="error">
-                        <p *ngIf="Inicio?.hasError('required')">
-                            El periodo de inicio es requerido
-                        </p>
-                    </div>
-                </ng-container>
+                <label for="fechaInicio">Inicio</label>
+                <input 
+                    type="date" 
+                    name="fechaInicio"
+                    formControlName="fechaInicio"
+                >
+                <div *ngIf="FechaInicio?.errors && FechaInicio?.touched" class="error">
+                    <p *ngIf="FechaInicio?.hasError('required')">
+                        El periodo de fecha es requerido
+                    </p>
+                </div>
             </div>
             <div>
-                <label for="fin">Fin</label>
-                <ng-container formGroupName="periodo"> 
-                    <input 
-                        type="date" 
-                        name="fin"
-                        formControlName="fin"
-                    >
-                    <div *ngIf="Fin?.errors && Fin?.touched" class="error">
-                        <p *ngIf="Fin?.hasError('required')">
-                            El periodo de fin es requerido
-                        </p>
-                    </div>
-                </ng-container>
+                <label for="fechaFin">Fin</label>
+                <input 
+                    type="date" 
+                    name="fechaFin"
+                    formControlName="fechaFin"
+                    [valueAsDate]="this.dateInicio"
+                >
+                <div *ngIf="FechaFin?.errors && FechaFin?.touched" class="error">
+                    <p *ngIf="FechaFin?.hasError('required')">
+                        El periodo de fin es requerido
+                    </p>
+                </div>
             </div>
         </div>
     </div>
     <div class="form-control">
-        <label for="img">Imagen</label>
-        <input type="file" style="display: none;"
+        <label for="imagen">Imagen</label>
+        <input type="file" 
+            style="display: none;"
             (change)="onFileSelected($event)" #fileUpload
-            formGroupName="img"    
+            formGroupName="imagen"    
         >
         <div class="file-upload">
             <button type="button" mat-mini-fab color="primary" class="upload-btn"
                 (click)="fileUpload.click()">
                 <i class='bx bx-folder-plus'></i>
             </button>
-            {{this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+            {{ Imagen?.value || "No file uploaded yet." }}
         </div>
-        <div *ngIf="Img?.errors && Img?.touched" class="error">
-            <p *ngIf="Img?.hasError('required')">
+        <div *ngIf="Imagen?.errors && Imagen?.touched" class="error">
+            <p *ngIf="Imagen?.hasError('required')">
                 Una imagen es requerida
             </p>
         </div>

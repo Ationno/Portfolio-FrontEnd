@@ -1,14 +1,14 @@
 export interface Education {
     id?: number,
     titulo: string,
-    institucion: string,
-    periodo: {
-        inicio: string,
-        fin: string
+    institucion: {
+        nombre: string
     },
-    img: {
-        titulo: string,
+    fechaInicio: Date,
+    fechaFin: Date,
+    imagen: {
+        nombre: string,
         tipo: string,
-        base64?: string
+        base64?: Uint8Array
     }
 }   

@@ -14,7 +14,7 @@ import { UiService } from 'src/app/service/ui.service';
 
 export class EducationComponent {
 	educations : Education[] = [];
-	education: Education = {titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
+	education: Education = {titulo: "", institucion: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), imagen: {nombre: "", tipo: ""}};
 	subscription?: Subscription;
 	editar: boolean = false;
 	isLogged = false;
@@ -34,11 +34,11 @@ export class EducationComponent {
 	
 	public toggleFormEducation() {
 		this.uiService.toggleFormEducation();
-		this.education = {titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
+		this.education = {titulo: "", institucion: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), imagen: {nombre: "", tipo: ""}};
 	}
 
 	public deleteEducation(education: Education) {
-		this.educationService.delete(education).subscribe(() => {
+		this.educationService.delete(education.id!).subscribe(() => {
 			this.educations = this.educations.filter( ele => ele.id !== education.id )
 		})
 	}
@@ -47,12 +47,14 @@ export class EducationComponent {
 		this.educationService.edit(education).subscribe(() => {
 			let i: number = this.educations.findIndex(ele => ele.id == education.id);
 			this.educations[i] = education;
+			this.ngOnInit()
 		})
 	}
 
 	public addEducation(education: Education) {
-		this.educationService.add(education).subscribe((education: Education) => {
+		this.educationService.save(education).subscribe(() => {
 			this.educations.push(education)
+			this.ngOnInit()
 		});
 	}
 

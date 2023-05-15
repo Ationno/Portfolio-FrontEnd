@@ -1,7 +1,7 @@
 <li class="elemento_educacion">
-    <img [src]="this.imageSource" [alt]="this.education.img.titulo"> 
+    <img [src]="this.imageSource" [alt]="this.education.imagen.nombre"> 
     <div class="texto">
-        <h3><strong>{{this.education.titulo}} </strong> <i> - {{this.education.institucion}}</i>
+        <h3><strong>{{this.education.titulo!}} </strong> <i> - {{this.education.institucion.nombre!}}</i>
             <i class='bx bx-edit editar' 
                 *ngIf="this.isLogged" (click)="onEdit(education)"></i>
             <i class='bx bx-x borrar'

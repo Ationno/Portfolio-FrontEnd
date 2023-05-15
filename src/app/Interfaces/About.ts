@@ -1,9 +1,9 @@
 export interface About {
-    id?: number,
+    id: number,
     parrafo: string,
-    img: {
-        titulo: string,
+    imagen: {
+        nombre: string,
         tipo: string,
-        base64?: string
+        base64?: Uint8Array
     }
 }

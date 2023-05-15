@@ -2,10 +2,8 @@ export interface Experience {
     id?: number,
     titulo: string,
     empresa: string,
-    periodo: {
-        inicio: string,
-        fin: string
-    },
+    fechaInicio: string,
+    fechaFin: string
     aprendizajes: string[],
     img: {
         titulo: string,

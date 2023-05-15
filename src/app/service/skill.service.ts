@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { getDB } from './getDB.service';
 import { Observable } from 'rxjs';
 import { Skill } from '../model/skill';
 

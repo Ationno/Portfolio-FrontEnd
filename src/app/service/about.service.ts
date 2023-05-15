@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
-import { getDB } from './getDB.service';
+
 import { HttpClient } from '@angular/common/http';
+import { About } from '../model/about';
+import { Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class AboutService extends getDB{
-	constructor(
-		http:HttpClient
-	) { 
-		super(http)
-		this.apiUrl += "about";
+export class AboutService {
+	url = 'http://localhost:8080/sobre/';
+
+	constructor(private httpClient:HttpClient) {}
+
+	public get(): Observable<About[]>{
+		return this.httpClient.get<About[]>(this.url + "list");
+	}
+
+	public edit(about: About):Observable<any>{
+		console.log(about)
+		return this.httpClient.put<any>(this.url + 'update', about);
 	}
 }

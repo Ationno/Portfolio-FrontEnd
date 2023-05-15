@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { About } from 'src/app/Interfaces/About';
 import { UiService } from 'src/app/service/ui.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import * as byteBase64 from "byte-base64";
 
 @Component({
 	selector: 'app-form-about',
@@ -13,7 +14,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class FormAboutComponent {
 	@Output() onSubmitAbout: EventEmitter<About> = new EventEmitter();
 	@Output() onToggleFormAbout: EventEmitter<Event> = new EventEmitter();
-	@Input() about: About = {id: 0, parrafo: "", img: {titulo: "", tipo: "", base64: ""}};
+	@Input() about: About = {id: 0, parrafo: "", imagen: {nombre: "", tipo: ""}};
 	showAbout: boolean = false;
 	subscription?: Subscription;
 	form: FormGroup;
@@ -26,10 +27,10 @@ export class FormAboutComponent {
 		this.form = this.formBuilder.group({
 			id: [],
 			parrafo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
-			img: this.formBuilder.group({
-				titulo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
+			imagen: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
 				tipo: new FormControl('', {updateOn: "blur"}),
-				base64:new FormControl('', {updateOn: "blur"})
+				base64: new FormControl('', {updateOn: "blur"})
 			})
 		})
 	}
@@ -38,8 +39,8 @@ export class FormAboutComponent {
 		return this.form.get("parrafo");
 	}
 		
-	get Img(){
-		return this.form.get("img")?.get("titulo");	
+	get Imagen(){
+		return this.form.get("imagen")?.get("nombre");	
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
@@ -59,10 +60,10 @@ export class FormAboutComponent {
 			reader.readAsDataURL(file);
 			reader.onload = () => {
 				this.form.patchValue({
-					img: {
-						titulo: file.name,
+					imagen: {
+						nombre: file.name,
 						tipo: file.type.split('/')[1],
-						base64: reader.result?.toString().split(',')[1]
+						base64: Array.from(byteBase64.base64ToBytes(reader.result?.toString().split(',')[1]!))
 					}
 				})
 			};
@@ -73,7 +74,6 @@ export class FormAboutComponent {
 		if (this.form.valid){
 			this.onSubmitAbout.emit(this.form.getRawValue());
 			this.onToggleFormAbout.emit();
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();

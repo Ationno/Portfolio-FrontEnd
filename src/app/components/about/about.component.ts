@@ -12,7 +12,7 @@ import { TokenService } from 'src/app/service/token.service';
 	styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-	public about: About = {id: 0, parrafo: "", img: {titulo: "", tipo: "", base64: ""}};
+	public about: About = {id: 0, parrafo: "", imagen: {nombre: "", tipo: ""}};
 	subscription?: Subscription;
 	imageSource: any;
 	isLogged = false;
@@ -23,11 +23,15 @@ export class AboutComponent {
 		public sanitizer: DomSanitizer,
 		private tokenService: TokenService
 	) {}
+	
+	private textToImg(base64: Uint8Array | undefined) {
+		return this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${base64}`);
+	}
 
 	ngOnInit() {
 		this.aboutService.get().subscribe((abouts) => {	
 			this.about = abouts[0]
-			this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.about.img.base64}`);
+			this.imageSource = this.textToImg(this.about.imagen.base64)
 		})
 		this.isLogged = this.tokenService.getToken() != null;
 	}
@@ -39,7 +43,8 @@ export class AboutComponent {
 	public editAbout(about: About) {
 		this.aboutService.edit(about).subscribe(() => {
 			this.about = about;
-			this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.about.img.base64}`);
+			this.imageSource = this.textToImg(this.about.imagen.base64)
+			this.ngOnInit()
 		})
 	}
 }
