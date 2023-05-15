@@ -1,3 +1,7 @@
+.responsive .caja {
+    width: 100%;
+}
+
 header .contenedor {
     position: relative;
     width: 100%;

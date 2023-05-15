@@ -14,7 +14,7 @@ import { TokenService } from 'src/app/service/token.service';
 export class ProjectsComponent {
 	projects : Project[] = [];
 	subscription?: Subscription;
-	project: Project = {titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+	project: Project = {titulo: "", parrafo: "", lenguajes: [{nombre: ""}], linkGit: "", linkPag: "", imagen: {nombre: "", tipo: ""}};
 	isLogged = false;
 
     constructor(
@@ -31,12 +31,12 @@ export class ProjectsComponent {
 	}
 	
 	public toggleFormProject() {
-		this.project = {titulo: "", parrafo: "", lenguajes: [], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+		this.project = {titulo: "", parrafo: "", lenguajes: [], linkGit: "", linkPag: "", imagen: {nombre: "", tipo: ""}};
 		this.uiService.toggleFormProject();
 	}
 
 	public deleteProject(project: Project) {
-		this.projectService.delete(project).subscribe(() => {
+		this.projectService.delete(project.id!).subscribe(() => {
 			this.projects = this.projects.filter( ele => ele.id !== project.id )
 		})
 	}
@@ -45,12 +45,14 @@ export class ProjectsComponent {
 		this.projectService.edit(project).subscribe(() => {
 			let i: number = this.projects.findIndex(ele => ele.id == project.id);
 			this.projects[i] = project;
+			this.ngOnInit()
 		})
 	}
 
 	public addProject(project: Project) {
-		this.projectService.add(project).subscribe((project: Project) => {
+		this.projectService.save(project).subscribe(() => {
 			this.projects.push(project)
+			this.ngOnInit()
 		});
 	}
 

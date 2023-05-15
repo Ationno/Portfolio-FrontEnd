@@ -11,7 +11,7 @@ import { TokenService } from 'src/app/service/token.service';
 })
 
 export class ProjectElementComponent {
-	@Input() project: Project = {titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}}
+	@Input() project: Project = {titulo: "", parrafo: "", lenguajes: [], linkGit: "", linkPag: "", imagen: {nombre: "", tipo: ""}}
 	@Input() i: number = 0;
 	@Output() onDeleteProject: EventEmitter<Project> = new EventEmitter();
 	@Output() onEditFormProject: EventEmitter<Project> = new EventEmitter();
@@ -25,7 +25,7 @@ export class ProjectElementComponent {
 	) {}
 
 	ngOnInit() : void {
-		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.project.img.base64}`);
+		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.project.imagen.base64}`);
 		this.isLogged = this.tokenService.getToken() != null;
 	}
 

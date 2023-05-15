@@ -86,7 +86,6 @@ export class FormExperienceComponent {
 	public onDeleteAprendizaje(aprendizaje: string): void {
 		this.aprendizajes = this.aprendizajes.filter( ele => ele.parrafo != aprendizaje)
 		this.form.get("aprendizajes")?.setValue(Object.assign([], this.aprendizajes))
-		console.log(this.form.getRawValue())
 	}
 
 	public onFileSelected(event: any) {
@@ -111,7 +110,6 @@ export class FormExperienceComponent {
 			this.onAddExperience.emit(this.form.getRawValue());
 			this.onToggleFormExperience.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();

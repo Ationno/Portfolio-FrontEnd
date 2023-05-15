@@ -2,12 +2,12 @@ export interface Project {
     id?: number,
     titulo: string,
     parrafo: string,
-    lenguajes: string[],
+    lenguajes: {nombre: string}[],
     linkGit: string,
     linkPag: string,
-    img: {
-        titulo: string,
+    imagen: {
+        nombre: string,
         tipo: string,
-        base64?: string
+        base64?: Uint8Array
     }
 }
