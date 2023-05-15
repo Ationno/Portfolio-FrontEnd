@@ -13,8 +13,8 @@ export class FormExperienceComponent {
 	@Output() onAddExperience: EventEmitter<Experience> = new EventEmitter();
 	@Output() onEditExperience: EventEmitter<Experience> = new EventEmitter();
 	@Output() onToggleFormExperience: EventEmitter<Event> = new EventEmitter();
-	@Input() experience: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
-	aprendizajes: string[] = [];
+	@Input() experience: Experience = {titulo: "", empresa: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), aprendizajes: [{parrafo: ""}], imagen: {nombre: "", tipo: ""}};
+	aprendizajes: {parrafo: string}[] = [];
 	showFormExperience: boolean = false;
 	subscription?: Subscription;
 	form: FormGroup;
@@ -27,15 +27,15 @@ export class FormExperienceComponent {
 		this.form = this.formBuilder.group({
 			id: [],
 			titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			empresa: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			periodo: this.formBuilder.group({
-				inicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-				fin: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
+			empresa: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
 			}),
+			fechaInicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			fechaFin: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			aprendizaje: new FormControl(""),
 			aprendizajes: new FormControl([]),
-			img: this.formBuilder.group({
-				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			imagen: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 				tipo: new FormControl('', {updateOn: 'blur'}),
 				base64: new FormControl('', {updateOn: 'blur'})
 			})
@@ -55,19 +55,19 @@ export class FormExperienceComponent {
 	}
 
 	get Empresa(){
-		return this.form.get("empresa");
+		return this.form.get("empresa")?.get("nombre");
 	}
 		
 	get Inicio(){
-		return this.form.get("periodo")?.get("inicio");	
+		return this.form.get("fechaInicio");	
 	}
 
 	get Fin(){
-		return this.form.get("periodo")?.get("fin");	
+		return this.form.get("fechaFin");	
 	}
 
-	get Img(){
-		return this.form.get("img")?.get("titulo");	
+	get Imagen(){
+		return this.form.get("imagen")?.get("nombre");	
 	}
 
 	public onClose(): void {
@@ -77,15 +77,16 @@ export class FormExperienceComponent {
 
 	public onAddAprendizaje(): void {
 		if (this.aprendizajes.length<10) {
-			this.aprendizajes.push(this.form.get("aprendizaje")?.value)
+			this.aprendizajes.push({parrafo: this.form.get("aprendizaje")?.value})
 			this.form.get("aprendizajes")?.setValue(Object.assign([], this.aprendizajes))
 			this.form.get("aprendizaje")?.setValue("")
 		}
 	}
 
 	public onDeleteAprendizaje(aprendizaje: string): void {
-		this.aprendizajes = this.aprendizajes.filter( ele => ele != aprendizaje)
+		this.aprendizajes = this.aprendizajes.filter( ele => ele.parrafo != aprendizaje)
 		this.form.get("aprendizajes")?.setValue(Object.assign([], this.aprendizajes))
+		console.log(this.form.getRawValue())
 	}
 
 	public onFileSelected(event: any) {
@@ -95,8 +96,8 @@ export class FormExperienceComponent {
 			reader.readAsDataURL(file);
 				reader.onload = () => {
 					this.form.patchValue({
-						img: {
-							titulo: file.name,
+						imagen: {
+							nombre: file.name,
 							tipo: file.type.split('/')[1],
 							base64: reader.result?.toString().split(',')[1]
 						}
@@ -122,7 +123,6 @@ export class FormExperienceComponent {
 			this.onEditExperience.emit(this.form.getRawValue());
 			this.onToggleFormExperience.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();

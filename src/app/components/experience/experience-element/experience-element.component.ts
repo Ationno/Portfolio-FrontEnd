@@ -10,7 +10,7 @@ import { UiService } from 'src/app/service/ui.service';
 	styleUrls: ['./experience-element.component.css']
 })
 export class ExperienceElementComponent {
-	@Input() experience: Experience = {id: 0, titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [""], img: {titulo: "", tipo: "", base64: ""}};
+	@Input() experience: Experience = {titulo: "", empresa: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), aprendizajes: [], imagen: {nombre: "", tipo: ""}};
 	@Output() onDeleteExperience: EventEmitter<Experience> = new EventEmitter();
 	@Output() onEditExperience: EventEmitter<Experience> = new EventEmitter();
 	imageSource: any;
@@ -29,9 +29,9 @@ export class ExperienceElementComponent {
 	}
 
 	ngOnChanges() : void {
-		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.experience.img.base64}`);
-		this.inicio = new Date(this.experience.periodo.inicio);
-		this.fin = new Date(this.experience.periodo.fin);
+		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.experience.imagen.base64}`);
+		this.inicio = new Date(this.experience.fechaInicio);
+		this.fin = new Date(this.experience.fechaFin);
 	}
 
 	public onDelete(experience: Experience) {

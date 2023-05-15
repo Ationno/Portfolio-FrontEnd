@@ -14,8 +14,8 @@ export class ExperienceComponent {
 	experiences : Experience[] = [];
 	noExperience: boolean = false;
 	subscription?: Subscription;
-	experienceEdit: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
-	experienceChosen: Experience = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
+	experienceEdit: Experience = {titulo: "", empresa: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), aprendizajes: [], imagen: {nombre: "", tipo: ""}};
+	experienceChosen: Experience = {titulo: "", empresa: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), aprendizajes: [], imagen: {nombre: "", tipo: ""}};
 	clicked: boolean = false;
 	isLogged = false;
 
@@ -32,7 +32,7 @@ export class ExperienceComponent {
 				this.experienceChosen = experiences[0]
 				this.noExperience = false;
 			} else {
-				this.experienceChosen = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
+				this.experienceChosen = {titulo: "", empresa: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), aprendizajes: [], imagen: {nombre: "", tipo: ""}};
 				this.noExperience = true;
 			}
 		})
@@ -40,16 +40,16 @@ export class ExperienceComponent {
 	}
 
 	public choseExperience(empresa: string): void {
-		this.experienceChosen = this.experiences.filter( ele => ele.empresa === empresa )[0];
+		this.experienceChosen = this.experiences.filter( ele => ele.empresa.nombre === empresa )[0];
 	}
 	
 	public toggleFormExperience() {
 		this.uiService.toggleFormExperience();
-		this.experienceEdit = {titulo: "", empresa: "", periodo: {inicio: "", fin: ""}, aprendizajes: [], img: {titulo: "", tipo: "", base64: ""}};
+		this.experienceEdit = {titulo: "", empresa: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), aprendizajes: [], imagen: {nombre: "", tipo: ""}};
 	}
 
 	public deleteExperience(experience: Experience) {
-		this.experienceService.delete(experience).subscribe(() => {
+		this.experienceService.delete(experience.id!).subscribe(() => {
 			if (this.experiences.length == 1) 
 				this.noExperience = true;
 			this.experiences = this.experiences.filter( ele => ele.id !== experience.id )
@@ -63,15 +63,17 @@ export class ExperienceComponent {
 		this.experienceService.edit(experience).subscribe(() => {
 			let i: number = this.experiences.findIndex(ele => ele.id == experience.id);
 			this.experiences[i] = experience;
+			this.ngOnInit()
 		})
 	}
 
 	public addExperience(experience: Experience) {
-		this.experienceService.add(experience).subscribe((experience: Experience) => {
+		this.experienceService.save(experience).subscribe(() => {
 			if (this.experiences.length == 0) { 
 				this.noExperience = false;
 			}
 			this.experiences.push(experience)
+			this.ngOnInit()
 		});
 	}
 

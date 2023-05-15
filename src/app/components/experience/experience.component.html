@@ -12,7 +12,7 @@
     ></app-form-experience>
     <div class="contenido">
         <ul class="lista_trabajos">
-            <li *ngFor="let elem of experiences; first as isFirst" [ngClass]="{'clicked': elem.empresa == this.experienceChosen.empresa}" (click)="choseExperience(elem.empresa)">{{elem.empresa}}</li>
+            <li *ngFor="let elem of experiences; first as isFirst" [ngClass]="{'clicked': elem.empresa.nombre == this.experienceChosen.empresa.nombre}" (click)="choseExperience(elem.empresa.nombre)">{{elem.empresa.nombre}}</li>
         </ul>
         <app-experience-element *ngIf="!this.noExperience"
             [experience] = "experienceChosen"
