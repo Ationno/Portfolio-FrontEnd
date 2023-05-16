@@ -1,12 +1,12 @@
 <li class="elemento_educacion">
     <img [src]="this.imageSource" [alt]="this.education.imagen.nombre"> 
     <div class="texto">
-        <h3><strong>{{this.education.titulo!}} </strong> <i> - {{this.education.institucion.nombre!}}</i>
+        <h3><strong>{{this.education.titulo!}} </strong> <i class="institucion"> - {{this.education.institucion.nombre!}}</i>
             <i class='bx bx-edit editar' 
                 *ngIf="this.isLogged" (click)="onEdit(education)"></i>
             <i class='bx bx-x borrar'
                 *ngIf="this.isLogged" (click)="onDelete(education)"></i> 
         </h3>
-        <p> <i>{{getDate()}}</i> </p>
+        <p class="fecha"> <i>{{getDate()}}</i> </p>
     </div>	
 </li>

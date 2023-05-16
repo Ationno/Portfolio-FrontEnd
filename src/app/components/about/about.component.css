@@ -1,3 +1,19 @@
+@media only screen and (max-width: 1000px)  {
+    .acerca_de {
+        margin: 5% 10% 0 10%!IMPORTANT;
+        display: block!IMPORTANT;
+    }
+    .acerca_de .imagen img {
+        max-width: 300px!IMPORTANT;
+    }
+    .titulo i {
+        font-size: 1rem!IMPORTANT;
+    }
+    .parrafo {
+        font-size: .75rem!IMPORTANT;
+    }
+}
+
 .acerca_de {
     margin: 15% 20% 0 20%;
     display: flex;

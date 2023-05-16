@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bitter:wght@700&family=Mulish:wght@300;600;1000&display=swap');
 
+@media only screen and (max-width: 1000px)  {
+    body {
+        margin: 0 15px!IMPORTANT;
+    }
+    .linea_pagina1 {
+        display: none!IMPORTANT;
+    }
+    
+    .linea_pagina2 {
+        display: none!IMPORTANT;
+    }
+    h1 {
+        font-size: 1.25em!IMPORTANT;
+    }
+    h2 {
+        font-size: 1em!IMPORTANT;
+    } 
+    h3 {
+        font-size: 0.75em!IMPORTANT;
+    } 
+    h4 {
+        font-size: 0.75em!IMPORTANT;
+    } 
+    .linea {
+        width: 100px!IMPORTANT;
+    }
+}
+
 * {
     box-sizing: border-box;
 }

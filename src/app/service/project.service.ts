@@ -24,7 +24,6 @@ export class ProjectService {
 	}
 
 	public edit(project: Project):Observable<any>{
-		console.log(project)
 		return this.httpClient.put<any>(this.url + 'update', project);
 	}
 }

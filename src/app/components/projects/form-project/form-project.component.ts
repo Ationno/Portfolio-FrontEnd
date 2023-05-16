@@ -45,7 +45,6 @@ export class FormProjectComponent {
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes['project']?.currentValue)  {
 			this.form?.patchValue(this.project);
-			console.log(this.project)
 			this.lenguajes = Object.assign([], this.form.get("lenguajes")?.value);
 			this.form.get("lenguaje")?.get("nombre")?.setValue("")
 		}

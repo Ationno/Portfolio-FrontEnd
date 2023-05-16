@@ -7,7 +7,7 @@
             <i class='bx bx-x borrar'
                 *ngIf="this.isLogged" (click)="onDelete(project)"></i> 
         </h3>
-        <p>{{project.parrafo}}</p>
+        <p class="parrafo">{{project.parrafo}}</p>
         <ul class="lista_lenguajes">
             <li *ngFor=" let elem of project.lenguajes">{{elem.nombre}}</li>
         </ul>

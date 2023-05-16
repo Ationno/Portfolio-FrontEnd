@@ -5,7 +5,7 @@
             <div class="linea"></div>
             <i *ngIf="this.isLogged" class='bx bx-edit editar'  (click)="toggleFormAbout()"></i>
         </div>
-        <p>{{this.about.parrafo!}}</p>
+        <p class="parrafo">{{this.about.parrafo!}}</p>
     </div>
     <app-form-about
         (onSubmitAbout)="editAbout($event)"

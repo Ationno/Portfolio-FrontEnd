@@ -1,3 +1,17 @@
+@media only screen and (max-width: 1000px)  {
+    .experiencia {
+        margin: 5% 10% 0 10%!IMPORTANT;
+        width: 80%!IMPORTANT;
+        min-height: 200px!IMPORTANT;
+    }
+    .lista_trabajos > * {
+        font-size: .75rem!IMPORTANT;
+    }
+    .titulo i {
+        font-size: 1rem!IMPORTANT;
+    }
+}
+
 .experiencia {
     margin: 15% 20% 0 30%;
     width: 45%;

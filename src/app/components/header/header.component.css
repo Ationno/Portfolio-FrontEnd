@@ -1,5 +1,21 @@
-.responsive .caja {
-    width: 100%;
+@media only screen and (max-width: 1000px)  {
+    .contenedor {
+        height: 350px!IMPORTANT;
+    }
+    .caja {
+        width: 100%!IMPORTANT;
+    }
+    .caja h1 {
+        font-size: 1.15rem!IMPORTANT;
+        top: 20%!IMPORTANT;
+    }
+    .caja p {
+        font-size: .75rem!IMPORTANT;
+        top: 45%!IMPORTANT;
+    }
+    .fold::before {
+        border-width: 0 75px 75px 0!IMPORTANT;
+    }
 }
 
 header .contenedor {

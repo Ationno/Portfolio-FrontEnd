@@ -37,6 +37,7 @@ export class SkillsComponent {
 	public addSkill(skill: Skill) {
 		this.skillService.save(skill).subscribe((skillSubs: Skill) => {
 			this.skills.push(skill)
+			this.ngOnInit()
 		});
 	}
 
@@ -50,6 +51,7 @@ export class SkillsComponent {
 		this.skillService.edit(skill).subscribe(() => {
 			let i: number = this.skills.findIndex(ele => ele.id == skill.id);
 			this.skills[i] = skill;
+			this.ngOnInit()
 		})
 	}
 	
