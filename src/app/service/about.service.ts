@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 	providedIn: 'root'
 })
 export class AboutService {
-	url = 'http://localhost:8080/sobre/';
+	url = 'https://backend-0oz6.onrender.com/sobre/';
 
 	constructor(private httpClient:HttpClient) {}
 
