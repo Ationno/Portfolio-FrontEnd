@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 	providedIn: 'root'
 })
 export class ExperienceService {
-	url = 'http://localhost:8080/experiencia/';
+	url = 'https://backend-0oz6.onrender.com/experiencia/';
 
 	constructor(private httpClient:HttpClient) {}
 
