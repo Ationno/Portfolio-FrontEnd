@@ -15,8 +15,8 @@ export class SkillService {
 		return this.httpClient.get<Skill[]>(this.url + "list");
 	}
 
-	public save(skill: Skill):Observable<any>{
-		return this.httpClient.post<any>(this.url + 'save', skill);
+	public save(skills: Skill):Observable<any>{
+		return this.httpClient.post<any>(this.url + 'save', skills);
 	}
 
 	public delete(id: number):Observable<any>{
