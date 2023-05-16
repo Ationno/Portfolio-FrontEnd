@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Education } from 'src/app/Interfaces/Education';
+import { TokenService } from 'src/app/service/token.service';
 import { UiService } from 'src/app/service/ui.service';
 
 @Component({
@@ -9,22 +10,25 @@ import { UiService } from 'src/app/service/ui.service';
 	styleUrls: ['./education-element.component.css']
 })
 export class EducationElementComponent {
-	@Input() education: Education = {titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
+	@Input() education: Education = {titulo: "", institucion: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), imagen: {nombre: "", tipo: ""}};
 	@Output() onDeleteEducation: EventEmitter<Education> = new EventEmitter();
 	@Output() onEditEducation: EventEmitter<Education> = new EventEmitter();
 	inicio: Date = new Date();
 	fin: Date = new Date();
 	imageSource: any;
+	isLogged = false;
 
 	constructor( 
 		private uiService: UiService,
-		private sanitizer: DomSanitizer
+		private sanitizer: DomSanitizer,
+		private tokenService: TokenService
 	) {}
 
 	ngOnInit() : void {
-		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.education.img.base64}`);
-		this.inicio = new Date(this.education.periodo.inicio);
-		this.fin = new Date(this.education.periodo.fin);
+		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.education.imagen.base64}`);
+		this.inicio = new Date(this.education.fechaInicio);
+		this.fin = new Date(this.education.fechaFin);
+		this.isLogged = this.tokenService.getToken() != null;
 	}
 
 	public onDelete(education: Education) {

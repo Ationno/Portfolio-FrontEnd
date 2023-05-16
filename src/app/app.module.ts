@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +25,7 @@ import { FormExperienceComponent } from './components/experience/form-experience
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
 	declarations: [
@@ -55,6 +55,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 		AppRoutingModule,
 		HttpClientModule,
 		FormsModule,
+		LayoutModule,
 		ReactiveFormsModule,
 		NgCircleProgressModule.forRoot({
 			// set defaults here

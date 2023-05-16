@@ -35,22 +35,24 @@
     </div>
     <div class="form-control">
         <label for="lenguaje">Lenguajes</label>
-        <div class="lenguajes">
-            <input 
-                type="text" 
-                name="lenguaje" 
-                id="lenguaje" 
-                placeholder="Agregar lenguaje"
-                (keydown.enter)="onAddLenguaje()"
-                formControlName="lenguaje"
-            >
-            <button>
-                <i class='bx bx-plus agregar_lenguaje' (click)="onAddLenguaje()"></i>
-            </button>
-        </div>
-        <ul class="lenguajes_elegidos">
-            <li *ngFor="let lenguaje of lenguajes">{{lenguaje}} <i class='bx bx-x' (click)="onDeleteLenguaje(lenguaje)"></i></li> 
-        </ul>
+        <ng-container formGroupName="lenguaje">
+            <div class="lenguajes">
+                <input 
+                    type="text" 
+                    name="nombre" 
+                    id="nombre" 
+                    placeholder="Agregar lenguaje"
+                    (keydown.enter)="onAddLenguaje()"
+                    formControlName="nombre"
+                >
+                <button>
+                    <i class='bx bx-plus agregar_lenguaje' (click)="onAddLenguaje()"></i>
+                </button>
+            </div>
+            <ul class="lenguajes_elegidos">
+                <li *ngFor="let lenguaje of lenguajes">{{lenguaje.nombre}} <i class='bx bx-x' (click)="onDeleteLenguaje(lenguaje.nombre)"></i></li> 
+            </ul>
+        </ng-container>
     </div>
     <div class="form-control">
         <label for="linkGit">GitHub</label>
@@ -83,7 +85,7 @@
         </div>
     </div>
     <div class="form-control">
-        <label for="img">Imagen</label>
+        <label for="imagen">Imagen</label>
         <input type="file" style="display: none;"
             (change)="onFileSelected($event)" #fileUpload>
         <div class="file-upload">
@@ -91,10 +93,10 @@
                 (click)="fileUpload.click()">
                 <i class='bx bx-folder-plus'></i>
             </button>
-            {{this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+            {{this.form.get("imagen")?.get("nombre")?.value || "No file uploaded yet."}}
         </div>
-        <div *ngIf="Img?.errors && Img?.touched" class="error">
-            <p *ngIf="Img?.hasError('required')">
+        <div *ngIf="Imagen?.errors && Imagen?.touched" class="error">
+            <p *ngIf="Imagen?.hasError('required')">
                 Una imagen es requerida
             </p>
         </div>

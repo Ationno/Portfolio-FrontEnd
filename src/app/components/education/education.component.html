@@ -2,7 +2,7 @@
     <div class="titulo">
         <h2>03. Educacion</h2>
         <div class="linea"></div>
-        <i class='bx bx-plus' (click)="toggleFormEducation()"></i>
+        <i *ngIf="this.isLogged" class='bx bx-plus' (click)="toggleFormEducation()"></i>
     </div>
     <app-form-education
         (onAddEducation)="addEducation($event)"

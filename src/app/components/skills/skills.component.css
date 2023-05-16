@@ -1,3 +1,18 @@
+@media only screen and (max-width: 1000px)  {
+    .habilidades {
+        margin: 5% 10% 0 10%!IMPORTANT;
+    }
+    .titulo i {
+        font-size: 1rem!IMPORTANT;
+    }
+    .cartas .contenido {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 100px))!IMPORTANT;
+        gap: 1em!IMPORTANT;
+    }
+    .cartas {
+        margin-top: 1em!IMPORTANT;
+    }
+}
 .habilidades {
     margin: 15% 20% 0 30%;
 }
@@ -21,6 +36,6 @@
 
 .cartas .contenido {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(125px, 175px));
+    grid-template-columns: repeat(auto-fit, minmax(175px, 250px));
     gap: 2em;
 }

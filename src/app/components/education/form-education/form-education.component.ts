@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Education } from 'src/app/Interfaces/Education';
 import { UiService } from 'src/app/service/ui.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import * as byteBase64 from "byte-base64";
 
 @Component({
 	selector: 'app-form-education',
@@ -14,10 +15,12 @@ export class FormEducationComponent {
 	@Output() onAddEducation: EventEmitter<Education> = new EventEmitter();
 	@Output() onEditEducation: EventEmitter<Education> = new EventEmitter();
 	@Output() onToggleFormEducation: EventEmitter<Event> = new EventEmitter();
-	@Input() education: Education = {titulo: "", institucion: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}};
+	@Input() education: Education = {titulo: "", institucion: {nombre: ""}, fechaInicio: new Date(), fechaFin: new Date(), imagen: {nombre: "", tipo: ""}};
 	showFormEducation: boolean = false;
 	subscription?: Subscription;
 	form: FormGroup;
+	dateInicio: Date = new Date();
+	dateFin: Date = new Date();
 
 	constructor(
 		private uiService: UiService,
@@ -27,13 +30,13 @@ export class FormEducationComponent {
 		this.form = this.formBuilder.group({
 			id: [],
 			titulo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
-			institucion: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			periodo: this.formBuilder.group({
-				inicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-				fin: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
+			institucion: this.formBuilder.group ({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			}),
-			img: this.formBuilder.group({
-				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			fechaInicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			fechaFin: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			imagen: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 				tipo: new FormControl('', {updateOn: 'blur'}),
 				base64: new FormControl('', {updateOn: 'blur'})
 			})
@@ -41,8 +44,15 @@ export class FormEducationComponent {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (changes['education']?.currentValue) 
+		if (changes['education']?.currentValue) {
+			let dateInicio = new Date(this.education.fechaInicio);
+			let dateFin = new Date(this.education.fechaFin);
 			this.form?.patchValue(this.education);
+			this.form?.patchValue({
+				fechaInicio: dateInicio.getFullYear() + "-" + String(dateInicio.getMonth() + 1).padStart(2, '0') + "-" + String(dateInicio .getDate()).padStart(2, '0'),
+				fechaFin: dateFin.getFullYear() + "-" + String(dateFin.getMonth() + 1).padStart(2, '0') + "-" + String(dateFin .getDate()).padStart(2, '0')
+			})
+		}
 	}
 
 	get Titulo(){
@@ -50,19 +60,19 @@ export class FormEducationComponent {
 	}
 
 	get Institucion(){
-		return this.form.get("institucion");
+		return this.form.get("institucion")?.get("nombre");
 	}
 		
-	get Inicio(){
-		return this.form.get("periodo")?.get("inicio");	
+	get FechaInicio(){
+		return this.form.get("fechaInicio");	
 	}
 
-	get Fin(){
-		return this.form.get("periodo")?.get("fin");	
+	get FechaFin(){
+		return this.form.get("fechaFin");	
 	}
 
-	get Img(){
-		return this.form.get("img")?.get("titulo");	
+	get Imagen(){
+		return this.form.get("imagen")?.get("nombre");	
 	}
 
 	public onClose(): void {
@@ -75,15 +85,15 @@ export class FormEducationComponent {
 		const reader = new FileReader;
 		if (file) {
 			reader.readAsDataURL(file);
-				reader.onload = () => {
-					this.form.patchValue({
-						img: {
-							titulo: file.name,
-							tipo: file.type.split('/')[1],
-							base64: reader.result?.toString().split(',')[1]
-						}
-					})
-				};
+			reader.onload = () => {
+				this.form.patchValue({
+					imagen: {
+						nombre: file.name,
+						tipo: file.type.split('/')[1],
+						base64: Array.from(byteBase64.base64ToBytes(reader.result?.toString().split(',')[1]!))
+					}
+				})
+			};
 		}
 	}
 
@@ -92,7 +102,6 @@ export class FormEducationComponent {
 			this.onAddEducation.emit(this.form.getRawValue());
 			this.onToggleFormEducation.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();
@@ -104,7 +113,6 @@ export class FormEducationComponent {
 			this.onEditEducation.emit(this.form.getRawValue());
 			this.onToggleFormEducation.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();

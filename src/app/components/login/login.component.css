@@ -1,3 +1,26 @@
+@media only screen and (max-width: 1000px)  {
+    form {
+        margin-top: 5em!IMPORTANT;
+        padding: 1em;
+        width: 300px!IMPORTANT;
+    }
+    .form-control input {
+        font-size: .6em!IMPORTANT;
+    } 
+    .form-control label {
+        font-size: 1rem!IMPORTANT;
+        margin-right: .5em;
+    }
+    form h1 {
+        margin-bottom: 1em!IMPORTANT;
+    }
+    .button-green {
+        margin-top: 1em!IMPORTANT;
+        font-size: .65rem!IMPORTANT;
+        padding: .75em 1.25em!IMPORTANT;;
+    }
+}
+
 .div_formulario {
     width: 100%;
     height: calc(100vh - 144px);

@@ -18,18 +18,20 @@
         </div>
     </div>
     <div class="form-control">
-        <label for="empresa">Empresa trabajada</label>
-        <input 
-            type="text"  
-            name="empresa" 
-            placeholder="Agregar empresa"
-            formControlName="empresa"  
-        >
-        <div *ngIf="Empresa?.errors && Empresa?.touched" class="error">
-            <p *ngIf="Empresa?.hasError('required')">
-                La empresa es requerida
-            </p>
-        </div>
+        <ng-container formGroupName="empresa">
+            <label for="nombre">Empresa trabajada</label>
+            <input 
+                type="text"  
+                name="nombre" 
+                placeholder="Agregar nombre"
+                formControlName="nombre"  
+            >
+            <div *ngIf="Empresa?.errors && Empresa?.touched" class="error">
+                <p *ngIf="Empresa?.hasError('required')">
+                    La empresa es requerida
+                </p>
+            </div>
+        </ng-container>
     </div>
     <div class="form-control">
         <label for="aprendizaje">Aprendizajes</label>
@@ -37,6 +39,7 @@
             <input 
                 type="text" 
                 name="aprendizaje" 
+                id="aprendizaje"
                 placeholder="Agregar aprendizaje"
                 formControlName="aprendizaje"
                 (keydown.enter)="onAddAprendizaje()"
@@ -46,46 +49,42 @@
             </button>
         </div>
         <ul class="aprendizajes_elegidos">
-            <li *ngFor="let aprendizaje of aprendizajes">{{aprendizaje.slice(0,9) + "..."}} <i class='bx bx-x' (click)="onDeleteAprendizaje(aprendizaje)"></i></li> 
+            <li *ngFor="let aprendizaje of aprendizajes">{{aprendizaje.parrafo.slice(0,9) + "..."}} <i class='bx bx-x' (click)="onDeleteAprendizaje(aprendizaje.parrafo)"></i></li> 
         </ul>
     </div>
     <div class="form-control periodo">
         <h3>Periodo de aprendizaje</h3>
         <div style="display: flex; justify-content: space-around;">
             <div>
-                <label for="inicio">Inicio</label>
-                <ng-container formGroupName="periodo"> 
-                    <input 
-                        type="date" 
-                        name="inicio"
-                        formControlName="inicio"
-                    >
-                    <div *ngIf="Inicio?.errors && Inicio?.touched" class="error">
-                        <p *ngIf="Inicio?.hasError('required')">
-                            El periodo de inicio es requerido
-                        </p>
-                    </div>
-                </ng-container>
+                <label for="fechaInicio">Inicio</label>
+                <input 
+                    type="date" 
+                    name="fechaInicio"
+                    formControlName="fechaInicio"
+                >
+                <div *ngIf="Inicio?.errors && Inicio?.touched" class="error">
+                    <p *ngIf="Inicio?.hasError('required')">
+                        El periodo de inicio es requerido
+                    </p>
+                </div>
             </div>
             <div>
-                <label for="fin">Fin</label>
-                <ng-container formGroupName="periodo"> 
-                    <input 
-                        type="date" 
-                        name="fin"
-                        formControlName="fin"
-                    >
-                    <div *ngIf="Fin?.errors && Fin?.touched" class="error">
-                        <p *ngIf="Fin?.hasError('required')">
-                            El periodo de fin es requerido
-                        </p>
-                    </div>
-                </ng-container>
+            <label for="fechaFin">Fin</label>
+                <input 
+                    type="date" 
+                    name="fechaFin"
+                    formControlName="fechaFin"
+                >
+                <div *ngIf="Fin?.errors && Fin?.touched" class="error">
+                    <p *ngIf="Fin?.hasError('required')">
+                        El periodo de fin es requerido
+                    </p>
+                </div>
             </div>
         </div>
     </div>
     <div class="form-control">
-        <label for="img">Imagen</label>
+        <label for="imagen">Imagen</label>
         <input type="file" style="display: none;"
             (change)="onFileSelected($event)" #fileUpload>
         <div class="file-upload">
@@ -93,10 +92,10 @@
                 (click)="fileUpload.click()">
                 <i class='bx bx-folder-plus'></i>
             </button>
-            {{this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+            {{this.form.get("imagen")?.get("nombre")?.value || "No file uploaded yet."}}
         </div>
-        <div *ngIf="Img?.errors && Img?.touched" class="error">
-            <p *ngIf="Img?.hasError('required')">
+        <div *ngIf="Imagen?.errors && Imagen?.touched" class="error">
+            <p *ngIf="Imagen?.hasError('required')">
                 Una imagen es requerida
             </p>
         </div>

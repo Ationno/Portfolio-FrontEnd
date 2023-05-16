@@ -1,15 +1,15 @@
 <div class="proyecto" [ngClass]="{'impar': i%2==1}">
-    <img [src]="this.imageSource" [alt]="this.project.img.titulo">
+    <img [src]="this.imageSource" [alt]="this.project.imagen.nombre">
     <div class="contenido">
         <h3> <strong>{{project.titulo}}</strong> 
             <i class='bx bx-edit editar' 
-                (click)="onEdit(project)"></i>
+                *ngIf="this.isLogged" (click)="onEdit(project)"></i>
             <i class='bx bx-x borrar'
-                (click)="onDelete(project)"></i> 
+                *ngIf="this.isLogged" (click)="onDelete(project)"></i> 
         </h3>
-        <p>{{project.parrafo}}</p>
+        <p class="parrafo">{{project.parrafo}}</p>
         <ul class="lista_lenguajes">
-            <li *ngFor=" let elem of project.lenguajes">{{elem}}</li>
+            <li *ngFor=" let elem of project.lenguajes">{{elem.nombre}}</li>
         </ul>
         <div class="lista_links">
             <a [href]="project.linkGit"><i class='bx bxl-github' ></i></a>

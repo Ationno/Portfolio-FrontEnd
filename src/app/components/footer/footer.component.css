@@ -1,3 +1,18 @@
+@media only screen and (max-width: 1000px)  {
+    footer {
+        margin: 2em 0 1em 0!IMPORTANT;
+    }
+
+    footer p {
+        font-size: .55rem!IMPORTANT;
+    }
+    
+    footer p i{
+        margin-left: 0.25em!IMPORTANT;
+        font-size: .75rem!IMPORTANT;
+    }
+}
+
 footer {
     margin: 4em 0 2em 0;
 }

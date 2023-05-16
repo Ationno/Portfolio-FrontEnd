@@ -1,24 +1,21 @@
 <div class="div_formulario">
-<form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+<form [formGroup]="form" (ngSubmit)="onLogin($event)">
     <h1>Ingresar</h1> 
     <div class="form-control">
         <div style="display: flex;">
-            <label for="email"><i class='bx bxs-user'></i></label>
+            <label for="nombreUsuario"><i class='bx bxs-user'></i></label>
             <input 
                 type="text" 
-                name="email" 
-                id="email" 
-                placeholder="email"
-                [value] = "email"
-                formControlName="email"
+                name="nombreUsuario" 
+                id="nombreUsuario" 
+                placeholder="Nombre de usuario"
+                [value] = "nombreUsuario"
+                formControlName="nombreUsuario"
             >
         </div>
-        <div *ngIf="Mail?.errors && Mail?.touched" class="error">
-            <p *ngIf="Mail?.hasError('required')">
-                El email es requerido
-            </p>
-            <p *ngIf="Mail?.hasError('email')">
-                El formato del email debe ser valido
+        <div *ngIf="NombreUsuario?.errors && NombreUsuario?.touched" class="error">
+            <p *ngIf="NombreUsuario?.hasError('required')">
+                El nombre de usuario es requerido
             </p>
         </div>
     </div>

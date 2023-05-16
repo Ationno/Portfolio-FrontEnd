@@ -2,26 +2,26 @@
     <circle-progress
         class="chart"
         [percent]="skill.porcentaje"
-        [radius]="50"
-        [outerStrokeWidth]="12"
+        [radius]="this.radius"
+        [outerStrokeWidth]="this.stokeWidth"
         [outerStrokeColor]="'#10b0b0'"
         [animation]="true"
         [animationDuration]="1000"
         [showInnerStroke]="false"
         [showSubtitle]="false"
-        [titleFontSize]="'2rem'"
-        [unitsFontSize]="'1.25rem'"
+        [titleFontSize]="this.titleFontSize"
+        [unitsFontSize]="this.unitsFontSize"
         [renderOnClick]="false"
     ></circle-progress>
     <div class="cuerpo_carta">
         <div class="titulo">
             <h4>{{skill.titulo}}</h4>
             <i class='bx bx-edit editar'
-                (click)="onEdit(skill)"></i>
+                *ngIf="this.isLogged" (click)="onEdit(skill)"></i>
             <i class='bx bx-x borrar'
-                (click)="onDelete(skill)"
+                *ngIf="this.isLogged" (click)="onDelete(skill)"
             ></i> 
         </div>
-        <p>{{skill.parrafo}}</p>
+        <p class="parrafo">{{skill.parrafo}}</p>
     </div>
 </div>

@@ -1,3 +1,38 @@
+@media only screen and (max-width: 1000px)  {
+	form {
+		padding: 1.5em 1.5em 1.5em 1em!IMPORTANT;
+		min-width: 150px!IMPORTANT;
+	}
+
+	form h1 {
+		font-size: 1em!IMPORTANT;
+		margin-bottom: .25em;
+	}
+
+	.form-control label {
+		margin: .75em 0 .35em 0!IMPORTANT;
+		font-size: .75em!IMPORTANT;
+	}
+
+	.form-control input {
+		padding: .35em!IMPORTANT;
+	}
+
+	.button-green {
+        margin-top: 1em!IMPORTANT;
+        font-size: .65rem!IMPORTANT;
+        padding: .75em 1.25em!IMPORTANT;
+    }
+
+	.file-upload {
+		font-size: .75rem!IMPORTANT;
+	}
+	
+	.file-upload button i {
+		font-size: .85rem!IMPORTANT;
+	}
+}
+
 form {
 	position: fixed;
 	top: 50%;

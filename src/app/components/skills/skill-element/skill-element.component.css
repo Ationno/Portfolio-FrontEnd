@@ -1,3 +1,23 @@
+@media only screen and (max-width: 1000px)  {
+    .cuerpo_carta {
+        padding: .35em!IMPORTANT;
+    }
+    .titulo .editar {
+        font-size: .75rem!IMPORTANT;
+    }
+    .titulo h4 {
+        font-size: .65rem!IMPORTANT;
+    }
+    
+    .titulo .borrar {
+        margin-left: 0.15em!IMPORTANT;
+        font-size: .65rem!IMPORTANT;
+    }
+
+    .parrafo {
+        font-size: .55rem!IMPORTANT;
+    }
+}
 .carta {
     border: 2px solid #d1d1d1;
     border-radius: 10px;
@@ -36,6 +56,14 @@
     font-size: 1.25rem;
     color: red;
     cursor: pointer;
+}
+
+.titulo h4 {
+    font-size: 1.15rem;
+}
+
+.parrafo {
+    font-size: .85rem;
 }
 
 .carta p {

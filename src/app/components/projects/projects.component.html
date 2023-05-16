@@ -2,7 +2,7 @@
     <div class="titulo">
         <h2>05. Proyectos</h2>
         <div class="linea"></div>
-        <i class='bx bx-plus' (click)="toggleFormProject()"></i>
+        <i *ngIf="this.isLogged" class='bx bx-plus' (click)="toggleFormProject()"></i>
     </div>
     <app-form-project
         (onAddProject)="addProject($event)"

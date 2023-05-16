@@ -1,3 +1,33 @@
+@media only screen and (max-width: 1000px)  {
+    .proyecto img {
+        max-width: 200px!IMPORTANT;
+        max-height: 100px!IMPORTANT;
+        min-height: 100px!IMPORTANT;
+    }
+    .lista_lenguajes {
+        gap: .5em!IMPORTANT;
+        font-size: .55rem!IMPORTANT;
+    }
+    .lista_links i {
+        font-size: .75rem!IMPORTANT;
+    }
+    .proyecto .contenido {
+        padding: 1em 0!IMPORTANT;
+    }
+    .proyecto .contenido p {
+        font-size: .65rem;
+        padding: .5em!IMPORTANT;
+        width: 75%!IMPORTANT;
+    }
+    h3 .editar {
+        font-size: 0.75rem!IMPORTANT;
+    }
+    
+    h3 .borrar {
+        margin-left: 0.15em!IMPORTANT;
+        font-size: 0.75rem!IMPORTANT;
+    }
+}
 .proyecto {
     position: relative;
     margin-top: 2em;

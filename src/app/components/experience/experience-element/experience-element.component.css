@@ -1,3 +1,33 @@
+@media only screen and (max-width: 1000px)  {
+    .opcion_tomada h3 img {
+        width: 35px!IMPORTANT;
+        height: 16px!IMPORTANT;
+    }
+    .opcion_tomada ul li i {
+        font-size: 0.35rem!IMPORTANT;
+    }
+    h3 .editar {
+        font-size: 0.75rem!IMPORTANT;
+    }
+    
+    h3 .borrar {
+        margin-left: 0.15em!IMPORTANT;
+        font-size: 0.75rem!IMPORTANT;
+    }
+
+    .lista_aprendizaje {
+        font-size: .65rem!IMPORTANT;
+        margin-bottom: 2.5px!IMPORTANT;
+    }
+
+    .fecha {
+        font-size: .75rem!IMPORTANT;
+    }
+
+    .opcion_tomada ul {
+        margin-top: 5px!IMPORTANT;
+    }
+}
 .opcion_tomada h3 img {
     width: 70px;
     height: 37px;

@@ -1,15 +1,15 @@
 export interface Experience {
     id?: number,
     titulo: string,
-    empresa: string,
-    periodo: {
-        inicio: string,
-        fin: string
+    empresa: {
+        nombre: string
     },
-    aprendizajes: string[],
-    img: {
-        titulo: string,
+    fechaInicio: Date,
+    fechaFin: Date
+    aprendizajes: {parrafo: string}[],
+    imagen: {
+        nombre: string,
         tipo: string,
-        base64?: string
+        base64?: Uint8Array
     }
 }

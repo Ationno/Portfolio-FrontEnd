@@ -1,3 +1,32 @@
+@media only screen and (max-width: 1000px)  {
+    .institucion {
+        font-size: .75rem!IMPORTANT;
+    }
+    h3 .editar {
+        font-size: 0.75rem!IMPORTANT;
+    }
+    
+    h3 .borrar {
+        margin-left: 0.15em!IMPORTANT;
+        font-size: 0.75rem!IMPORTANT;
+    }
+    .fecha {
+        font-size: .75rem!IMPORTANT;
+    }
+    .elemento_educacion {
+        margin-bottom: 1em!IMPORTANT;
+    }
+    .elemento_educacion img {
+        width: 45px!IMPORTANT;
+        height: 45px!IMPORTANT;
+        margin: 0 .5em!IMPORTANT;
+    }
+    .elemento_educacion::after {
+        width: 10px!IMPORTANT;
+        height: 10px!IMPORTANT;
+        left: -6px!IMPORTANT;
+    }
+}
 .elemento_educacion {
     display: flex;
     position: relative;

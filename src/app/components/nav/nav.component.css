@@ -1,3 +1,8 @@
+@media only screen and (max-width: 1000px)  {
+    .barra_navegacion > * {
+        font-size: 18px!IMPORTANT;
+    }
+}
 .barra_navegacion {
     display: flex;
     overflow: auto;
@@ -9,6 +14,7 @@
     font-size: 24px;
     font-family: 'Mulish', sans-serif;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .barra_navegacion .yoprogramo {
@@ -30,3 +36,4 @@
 .barra_navegacion :last-child {
     margin-right: 0;
 }
+

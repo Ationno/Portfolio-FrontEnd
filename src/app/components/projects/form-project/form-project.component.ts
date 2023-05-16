@@ -13,8 +13,8 @@ export class FormProjectComponent {
 	@Output() onAddProject: EventEmitter<Project> = new EventEmitter();
 	@Output() onEditProject: EventEmitter<Project> = new EventEmitter();
 	@Output() onToggleFormProject: EventEmitter<Event> = new EventEmitter();
-	@Input() project: Project = {titulo: "", parrafo: "", lenguajes: [""], linkGit: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
-	lenguajes: string[] = [];
+	@Input() project: Project = {titulo: "", parrafo: "", lenguajes: [], linkGit: "", linkPag: "", imagen: {nombre: "", tipo: ""}};
+	lenguajes: {nombre: string}[] = [];
 	showFormProject: boolean = false;
 	subscription?: Subscription;
 	form: FormGroup;
@@ -30,10 +30,12 @@ export class FormProjectComponent {
 			parrafo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			linkGit: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			linkPag: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			lenguaje: new FormControl(""),
 			lenguajes: new FormControl([]),
-			img: this.formBuilder.group({
-				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			lenguaje: this.formBuilder.group({ 
+				nombre: new FormControl([])
+			}),
+			imagen: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 				tipo: new FormControl('', {updateOn: 'blur'}),
 				base64: new FormControl('', {updateOn: 'blur'})
 			})
@@ -44,7 +46,7 @@ export class FormProjectComponent {
 		if (changes['project']?.currentValue)  {
 			this.form?.patchValue(this.project);
 			this.lenguajes = Object.assign([], this.form.get("lenguajes")?.value);
-			this.form.get("lenguaje")?.setValue("")
+			this.form.get("lenguaje")?.get("nombre")?.setValue("")
 		}
 	}
 
@@ -64,8 +66,8 @@ export class FormProjectComponent {
 		return this.form.get("linkPag");
 	}
 
-	get Img(){
-		return this.form.get("img")?.get("titulo");	
+	get Imagen(){
+		return this.form.get("imagen")?.get("nombre");	
 	}
 
 	public onClose(): void {
@@ -75,14 +77,14 @@ export class FormProjectComponent {
 
 	public onAddLenguaje(): void {
 		if (this.lenguajes.length<10) {
-			this.lenguajes.push(this.form.get("lenguaje")?.value)
+			this.lenguajes.push({nombre: this.form.get("lenguaje")?.value.nombre})
 			this.form.get("lenguajes")?.setValue(Object.assign([], this.lenguajes))
-			this.form.get("lenguaje")?.setValue("")
+			this.form.get("lenguaje")?.get("nombre")?.setValue("")
 		}
 	}
 
 	public onDeleteLenguaje(lenguaje: string): void {
-		this.lenguajes = this.lenguajes.filter( ele => ele != lenguaje)
+		this.lenguajes = this.lenguajes.filter( ele => ele.nombre != lenguaje)
 		this.form.get("lenguajes")?.setValue(Object.assign([], this.lenguajes))
 	}
 
@@ -93,8 +95,8 @@ export class FormProjectComponent {
 			reader.readAsDataURL(file);
 				reader.onload = () => {
 					this.form.patchValue({
-						img: {
-							titulo: file.name,
+						imagen: {
+							nombre: file.name,
 							tipo: file.type.split('/')[1],
 							base64: reader.result?.toString().split(',')[1]
 						}
@@ -108,7 +110,6 @@ export class FormProjectComponent {
 			this.onAddProject.emit(this.form.getRawValue());
 			this.onToggleFormProject.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();
@@ -120,7 +121,6 @@ export class FormProjectComponent {
 			this.onEditProject.emit(this.form.getRawValue());
 			this.onToggleFormProject.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();

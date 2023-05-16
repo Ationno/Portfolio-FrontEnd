@@ -13,7 +13,7 @@ export class FormSkillComponent {
 	@Output() onAddSkill: EventEmitter<Skill> = new EventEmitter();
 	@Output() onEditSkill: EventEmitter<Skill> = new EventEmitter();
 	@Output() onToggleFormSkill: EventEmitter<Event> = new EventEmitter();
-	@Input() skill: Skill = {titulo: "", parrafo: "", porcentaje:0, eleccion:""}; 
+	@Input() skill: Skill = {titulo: "", parrafo: "", porcentaje:0, tipo:0}; 
 	showFormSkill: boolean = false;
 	showEleccion : boolean = true;
 	subscription?: Subscription;
@@ -28,8 +28,8 @@ export class FormSkillComponent {
 			id: [],
 			titulo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
 			parrafo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			porcentaje: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			eleccion: new FormControl('')
+			porcentaje: new FormControl('', {validators: [Validators.required, Validators.min(0), Validators.max(100)], updateOn: 'blur'}),
+			tipo: new FormControl('')
 		})
 	}
 	
@@ -43,11 +43,11 @@ export class FormSkillComponent {
 	}
 
 	get Parrafo(){
-		return this.form.get("institucion");
+		return this.form.get("parrafo");
 	}
 		
 	get Porcentaje(){
-		return this.form.get("periodo")?.get("inicio");	
+		return this.form.get("porcentaje");	
 	}
 
 	public onClose(): void {
@@ -60,7 +60,6 @@ export class FormSkillComponent {
 			this.onAddSkill.emit(this.form.getRawValue());
 			this.onToggleFormSkill.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();
@@ -72,7 +71,6 @@ export class FormSkillComponent {
 			this.onEditSkill.emit(this.form.getRawValue());
 			this.onToggleFormSkill.emit();
 			this.form.reset()
-			alert("Success!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();
