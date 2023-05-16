@@ -12,7 +12,7 @@ import { TokenService } from 'src/app/service/token.service';
 	styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-	public about: About = {id: 0, parrafo: "", imagen: {nombre: "", tipo: ""}};
+	public about: About = {id: 0, parrafo: "Null", imagen: {nombre: "", tipo: ""}};
 	subscription?: Subscription;
 	imageSource: any;
 	isLogged = false;
@@ -30,7 +30,11 @@ export class AboutComponent {
 
 	ngOnInit() {
 		this.aboutService.get().subscribe((abouts) => {	
-			this.about = abouts[0]
+			if (abouts.length > 0) {
+				this.about = abouts[0]	
+			} else {
+				this.about = {id: 0, parrafo: "Null", imagen: {nombre: "null", tipo: "null"}};
+			}
 			this.imageSource = this.textToImg(this.about.imagen.base64)
 		})
 		this.isLogged = this.tokenService.getToken() != null;
